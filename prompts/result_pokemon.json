@@ -1,0 +1,89 @@
+{
+  "prompt": "generate a JSON array format of a list of 4 monsters with HP, Mana, Attack and Name based on pokemon, they have level ranging from 1 to 3, with higher levels having higher values. Each monster can have a spell, either inflicting damage, healing itself or lifestealing. The spell costs mana. You can add a visual description of each monster"
+  "result": [
+    {
+      "name": "Bulbasaur",
+      "level": 1,
+      "hp": 45,
+      "mana": 30,
+      "attack": 49,
+      "visual_description": "A small, quadrupedal, reptilian creature with a turquoise hide and a large, green bulb on its back. Its eyes are bright red and it has small, pointed ears.",
+      "spell": {
+        "name": "Vine Whip",
+        "type": "damage",
+        "cost": 10,
+        "power": 15
+      }
+    },
+    {
+      "name": "Ivysaur",
+      "level": 2,
+      "hp": 70,
+      "mana": 60,
+      "attack": 67,
+      "visual_description": "Bulbasaur's evolved form. It is larger, and the bulb on its back has bloomed, revealing a large pink flower. Its skin is now a deeper shade of green.",
+      "spell": {
+        "name": "Leech Seed",
+        "type": "lifesteal",
+        "cost": 25,
+        "power": 20
+      }
+    },
+    {
+      "name": "Charmander",
+      "level": 1,
+      "hp": 39,
+      "mana": 20,
+      "attack": 52,
+      "visual_description": "A small, bipedal, lizard-like creature with an orange hide and a bright flame on the tip of its tail. It has large, blue eyes.",
+      "spell": {
+        "name": "Ember",
+        "type": "damage",
+        "cost": 8,
+        "power": 12
+      }
+    },
+    {
+      "name": "Charmeleon",
+      "level": 2,
+      "hp": 58,
+      "mana": 50,
+      "attack": 64,
+      "visual_description": "Charmander's evolved form. It is larger and more agile. Its claws have become sharper, and it has grown a single horn on the back of its head.",
+      "spell": {
+        "name": "Fire Fang",
+        "type": "damage",
+        "cost": 20,
+        "power": 25
+      }
+    },
+    {
+      "name": "Squirtle",
+      "level": 1,
+      "hp": 44,
+      "mana": 25,
+      "attack": 48,
+      "visual_description": "A small, light-blue, turtle-like creature with a spiral shell on its back. It has large, brown eyes.",
+      "spell": {
+        "name": "Water Gun",
+        "type": "damage",
+        "cost": 10,
+        "power": 14
+      }
+    },
+    {
+      "name": "Wartortle",
+      "level": 3,
+      "hp": 79,
+      "mana": 70,
+      "attack": 72,
+      "visual_description": "Squirtle's evolved form. It's larger, the shell has hardened, and it has grown large fluffy ears that it uses as fins while swimming",
+      "spell": {
+        "name": "Aqua Tail",
+        "type": "damage",
+        "cost": 30,
+        "power": 35
+      }
+    }
+  ]
+}
