@@ -44,6 +44,7 @@ export const monstersSchema: ResponseSchema =  {
       },
       skills: {
         type: SchemaType.ARRAY,
+        nullable: true,
         items: {
           type: SchemaType.OBJECT,
           properties: {
