@@ -77,6 +77,8 @@ export class MonstersService {
       if(checkGeneratedMonster(monster)){
         console.log("added: " + monster.name);
         monsters.push(monster);
+      } else {
+        console.log("Something went wrong in this monster generation, skipping...");
       }
     })
 
@@ -102,11 +104,13 @@ export class MonstersService {
           })
         )
 
-        if(response.data.output.length > 0){
-          monster.picture = response.data.output[0];
-        } else {
-          console.log("Something went wrong with image generation", response.data.output);
+        if(response.data.status === "error"){
+          console.log("monster picture not generated / saved, api error: ");
+          console.log(response.data.message);
+          continue;
         }
+
+        monster.picture = response.data.output[0];
       }
     }
 
