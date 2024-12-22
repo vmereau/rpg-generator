@@ -7,7 +7,7 @@
 
 ## Description
 
-Experimental project using Gemini 2.0 and stable diffusion to generate monsters based on user input
+Experimental project using Gemini 2.0 and stable diffusion to generate an rpg based on user input
 using [Nest](https://github.com/nestjs/nest) framework
 
 ## Installation
