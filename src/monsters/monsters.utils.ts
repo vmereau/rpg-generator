@@ -1,6 +1,6 @@
 import {Monster} from "./monsters.service";
 
-export function checkGeneratedMonster(monster: Monster): boolean {
+export function validateMonsterProperties(monster: Monster): string[] {
   const errors: string[] = [];
 
   // Check name
@@ -45,7 +45,5 @@ export function checkGeneratedMonster(monster: Monster): boolean {
     errors.push("Monster mana has to be a positive number")
   }
 
-  if(errors.length > 0) console.log(errors);
-
-  return errors.length === 0;
+  return errors;
 }

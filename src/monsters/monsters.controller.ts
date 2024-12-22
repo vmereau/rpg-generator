@@ -1,7 +1,7 @@
 import {Body, Controller, Get, Post} from '@nestjs/common';
 import {Monster, MonsterGenerationData, MonstersService} from "./monsters.service";
 
-export class GenerateDto {
+export class GenerateMonstersDto {
   number: number;
   level: number;
   biome: string;
@@ -13,7 +13,7 @@ export class MonstersController {
   constructor(private readonly monstersService: MonstersService) {}
 
   @Post("generate")
-  generateMonsters(@Body() body: GenerateDto) {
+  generateMonsters(@Body() body: GenerateMonstersDto) {
 
     const data: MonsterGenerationData = {
       biome: body.biome || "forest",

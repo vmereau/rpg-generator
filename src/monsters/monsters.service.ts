@@ -1,11 +1,11 @@
-import {Injectable} from '@nestjs/common';
+import {Inject, Injectable} from '@nestjs/common';
 import {ConfigService} from "@nestjs/config/dist";
-import {GenerativeModel, GoogleGenerativeAI} from "@google/generative-ai";
+import {GenerativeModel} from "@google/generative-ai";
 import {HttpService} from "@nestjs/axios";
 import {firstValueFrom} from "rxjs";
 import {NoValidMonstersException} from "./monsters.errors";
-import {MonsterSkillType, monstersSchema} from "../schema/Monsters.schema";
-import {checkGeneratedMonster} from "./monsters.utils";
+import {MonsterSkillType, monstersSchema} from "./Monsters.schema";
+import {validateMonsterProperties} from "./monsters.utils";
 
 export enum MonsterLevelDescription {
   level_1 = "a weak monster",
@@ -41,16 +41,11 @@ export class MonsterSkill {
 
 @Injectable()
 export class MonstersService {
-  private genAI: GoogleGenerativeAI;
-  private model: GenerativeModel;
   private generatedMonsters: Monster[] = [];
 
   constructor(private configService: ConfigService,
-              private httpsService: HttpService) {
-    const apiKey = this.configService.get('GEMINI_API_KEY');
-    this.genAI = new GoogleGenerativeAI(apiKey);
-    this.model = this.genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
-  }
+              private httpsService: HttpService,
+              @Inject('GENAI_MODEL') private model: GenerativeModel) {}
 
   async generateMonsters(data: MonsterGenerationData) {
 
@@ -74,11 +69,13 @@ export class MonstersService {
 
     const monsters = [];
     monsterJSONArray.forEach((monster) => {
-      if(checkGeneratedMonster(monster)){
+      const errors = validateMonsterProperties(monster)
+      if(errors.length === 0){
         console.log("added: " + monster.name);
         monsters.push(monster);
       } else {
-        console.log("Something went wrong in this monster generation, skipping...");
+        console.log("Something went wrong in this monster generation, skipping and logging errors...");
+        console.log(errors);
       }
     })
 
