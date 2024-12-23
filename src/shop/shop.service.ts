@@ -7,6 +7,7 @@ import {GenerateShopDto} from "./shop.controller";
 import {shopSchema, ShopType} from "./shop.schema";
 import {validateMonsterProperties} from "../monsters/monsters.utils";
 import {validateShopProperties} from "./shop.utils";
+import {NoValidShopException} from "./shop.errors";
 
 export class Shop {
   id: number;
@@ -53,6 +54,7 @@ export class ShopService {
     } else {
       console.log("Something went wrong in this shop generation, skipping and logging errors...");
       console.log(errors);
+      throw new NoValidShopException(errors);
     }
 
     this.generatedShops.push(generatedShop);

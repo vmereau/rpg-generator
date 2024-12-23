@@ -8,6 +8,7 @@ import {RouterModule} from "@nestjs/core";
 import {appRoutes} from "./app.routes";
 import {GlobalModule} from "./global.module";
 import {ShopModule} from "./shop/shop.module";
+import {StoryModule} from "./story/story.module";
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import {ShopModule} from "./shop/shop.module";
     }),
     MonstersModule,
     ShopModule,
+    StoryModule,
     RouterModule.register(appRoutes),
   ],
   controllers: [AppController],

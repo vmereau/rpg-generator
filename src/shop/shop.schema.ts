@@ -1,6 +1,5 @@
 import {ResponseSchema, SchemaType} from "@google/generative-ai";
 import {itemSchema} from "../items/item.schema";
-import {MonsterSkillType} from "../monsters/monsters.schema";
 
 export enum ShopType {
   Weapons = "Weapons",
