@@ -29,6 +29,7 @@ export class ShopService {
 
     let prompt =
       "generate a " + data.type + " shop of " + data.numberOfItems + " level " + data.level + " items, " +
+      "the items should be fit for the following adventurer archetype: " + data.adventurerArchetype + " " +
       "add a short description for the shop keeper";
 
     switch (data.type) {

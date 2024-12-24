@@ -3,9 +3,10 @@ import {Shop, ShopService} from "./shop.service";
 import {ShopType} from "./shop.schema";
 
 export class GenerateShopDto {
-  level: number;
-  numberOfItems: number;
-  type: ShopType;
+  level: number = 1;
+  numberOfItems: number = 3;
+  type: ShopType = ShopType.Weapons;
+  adventurerArchetype: string = "warrior";
 }
 
 @Controller()
@@ -15,13 +16,7 @@ export class ShopController {
   @Post("generate")
   generateShop(@Body() body: GenerateShopDto): Promise<Shop> {
 
-    const data: GenerateShopDto = {
-      level: body.level || 1,
-      type: body.type || ShopType.Weapons,
-      numberOfItems: body.numberOfItems || 3
-    }
-
-    return this.shopService.generateShop(data);
+    return this.shopService.generateShop(body);
   }
 
   @Get()
