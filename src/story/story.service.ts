@@ -28,7 +28,8 @@ export class StoryService {
     let prompt =
       "generate a new story with a name, a summary and a biome. The story should be about an unnamed adventurer going somewhere to fight monsters and do something " +
       "like saving someone, finding a relic or just general exploration of uncharted lands" +
-      "At the end of the story, to succeed, the adventurer must fight an epic foe. Return its name.";
+      "At the end of the story, to succeed, the adventurer must fight an epic foe. Return its name." +
+      "the generated story should be totally different than the previous one";
 
     console.log("Generating Story...");
 

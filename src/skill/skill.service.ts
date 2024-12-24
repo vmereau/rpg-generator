@@ -22,7 +22,8 @@ export class SkillService {
       "generate an original skill for the following archetype: " + data.archetype + " " +
       "the cost should be 5 multiplied by " + data.level + " " +
       "it can have one or multiple effects, the effect value should be 5 plus a random number between 1 and 5 multiplied by " +data.level + " " +
-      "all fields should be filled";
+      "all fields should be filled " +
+      "the generated skill should be different than the previous one";
 
     console.log("Generating Skill ...");
 

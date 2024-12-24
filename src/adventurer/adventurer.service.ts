@@ -29,7 +29,8 @@ export class AdventurerService {
       "a base of 5 plus a random integer between 5 and 10 for his mana " +
       "with no skill, " +
       // "add a skill with a name that fits the adventurer's description, " +
-      "each field should be filled";
+      "each field should be filled " +
+      "the generated adventurer should be different than the previous generated ones";
 
     console.log("Generating Adventurer...");
 
