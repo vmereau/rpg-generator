@@ -1,6 +1,7 @@
 import {Body, Controller, Get, Post} from '@nestjs/common';
-import {Shop, ShopService} from "./shop.service";
 import {ShopType} from "./shop.schema";
+import {ShopService} from "./shop.service";
+import {Shop} from "./shop.class";
 
 export class GenerateShopDto {
   level: number = 1;

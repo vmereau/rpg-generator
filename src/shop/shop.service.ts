@@ -2,20 +2,11 @@ import {Inject, Injectable} from '@nestjs/common';
 import {ConfigService} from "@nestjs/config/dist";
 import {GenerativeModel} from "@google/generative-ai";
 import {HttpService} from "@nestjs/axios";
-import {Item} from "../items/item.service";
 import {GenerateShopDto} from "./shop.controller";
 import {shopSchema, ShopType} from "./shop.schema";
-import {validateMonsterProperties} from "../monster/monsters.utils";
 import {validateShopProperties} from "./shop.utils";
 import {NoValidShopException} from "./shop.errors";
-
-export class Shop {
-  id: number;
-  name: string;
-  shopkeeper_description: string;
-  goods: Item[];
-}
-
+import {Shop} from "./shop.class";
 
 @Injectable()
 export class ShopService {
@@ -50,13 +41,12 @@ export class ShopService {
     console.log("shop generated and parsed, checking integrity ...");
 
     const errors = validateShopProperties(generatedShop)
-    if(errors.length === 0){
-      console.log("generated Shop seems valid");
-    } else {
+    if(errors.length !== 0){
       console.log("Something went wrong in this shop generation, skipping and logging errors...");
-      console.log(errors);
       throw new NoValidShopException(errors);
     }
+
+    console.log("generated Shop seems valid");
 
     this.generatedShops.push(generatedShop);
     return generatedShop;

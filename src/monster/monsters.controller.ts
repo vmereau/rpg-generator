@@ -1,5 +1,6 @@
 import {Body, Controller, Get, Post} from '@nestjs/common';
-import {Monster, MonstersService} from "./monsters.service";
+import {MonstersService} from "./monsters.service";
+import {Monster} from "./monster.class";
 
 export class GenerateMonstersDto {
   number: number = 1;

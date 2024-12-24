@@ -1,5 +1,6 @@
-import {Body, Controller, Get, Post} from '@nestjs/common';
-import {Adventurer, AdventurerService} from "./adventurer.service";
+import {Controller, Get, Post} from '@nestjs/common';
+import {AdventurerService} from "./adventurer.service";
+import {Adventurer} from "./adventurer.class";
 
 @Controller()
 export class AdventurerController {

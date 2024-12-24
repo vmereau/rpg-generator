@@ -2,12 +2,11 @@ import {Inject, Injectable} from '@nestjs/common';
 import {ConfigService} from "@nestjs/config/dist";
 import {GenerativeModel} from "@google/generative-ai";
 import {HttpService} from "@nestjs/axios";
-import {Character} from "../core/character.entity";
 import {adventurerSchema} from "./adventurer.schema";
-
-export class Adventurer extends Character {
-  archetype: string;
-}
+import OpenAI from "openai";
+import {validateCharacterProperties} from "../core/character/character.utils";
+import {CharacterNotValidException} from "../core/character/character.errors";
+import {Adventurer} from "./adventurer.class";
 
 @Injectable()
 export class AdventurerService {
@@ -26,7 +25,8 @@ export class AdventurerService {
       "his level 1 properties should be : " +
       "a base of 15 plus a random integer between 1 and 15 for his health, " +
       "a base of 3 plus a random integer between 1 and 7 for his attack, " +
-      "a base of 5 plus a random integer between 5 and 10 for his mana " +
+      "a base of 5 plus a random integer between 5 and 10 for his mana, " +
+      "a base of 5 plus a random integer between 1 and 5 for his defense, " +
       "with no skill, " +
       // "add a skill with a name that fits the adventurer's description, " +
       "each field should be filled " +
@@ -41,15 +41,27 @@ export class AdventurerService {
 
     console.log("adventurers generated and parsed, checking integrity ...");
 
-    /**const errors = validateStoryProperties(generatedStory)
+    const errors = validateCharacterProperties(generatedAdventurer);
 
-    if(errors.length === 0){
-      console.log("generated Story seems valid");
-    } else {
-      console.log("Something went wrong in this Story generation, skipping and logging errors...");
-      console.log(errors);
-      throw new NoValidStoryException(errors);
-    }**/
+    if(errors.length !== 0){
+      console.log("Something went wrong in this monster generation, logging errors...");
+      throw new CharacterNotValidException(errors);
+    }
+
+    console.log("generated adventurer seems valid");
+
+    /*const openai = new OpenAI({
+      apiKey: this.configService.get("OPENAI_KEY"),
+    });
+
+    const response = await openai.images.generate({
+      model: "dall-e-3",
+      prompt: generatedAdventurer.description,
+      n: 1,
+      size: "1024x1024",
+    });
+
+    console.log(response.data[0].url);*/
 
     this.generatedAdventurer = generatedAdventurer;
     return generatedAdventurer;

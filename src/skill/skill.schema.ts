@@ -1,5 +1,5 @@
 import {ResponseSchema, SchemaType} from "@google/generative-ai";
-import {SkillTargetCharacterEnum, SKillTargetPropertyEnum} from "../core/character.entity";
+import {SkillTargetCharacterEnum, SKillTargetPropertyEnum} from "./skill.class";
 
 export const skillSchema: ResponseSchema =  {
   description: "Complete schema of the generated skill",

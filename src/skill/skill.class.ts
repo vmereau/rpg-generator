@@ -1,15 +1,3 @@
-
-export class Character {
-  name: string;
-  level: number;
-  description: string;
-  health: number;
-  attack: number;
-  mana: number;
-  skills : Skill[];
-  picture?: string;
-}
-
 export class Skill {
   name: string;
   description: string;
@@ -31,5 +19,6 @@ export enum SkillTargetCharacterEnum {
 export enum SKillTargetPropertyEnum {
   health = "health",
   mana = "mana",
-  attack = "attack"
+  attack = "attack",
+  defense = "defense"
 }

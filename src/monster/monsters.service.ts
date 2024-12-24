@@ -5,9 +5,9 @@ import {HttpService} from "@nestjs/axios";
 import {firstValueFrom} from "rxjs";
 import {NoValidMonstersException} from "./monsters.errors";
 import {monstersSchema} from "./Monsters.schema";
-import {validateMonsterProperties} from "./monsters.utils";
-import {Character} from "../core/character.entity";
 import {GenerateMonstersDto} from "./monsters.controller";
+import {validateCharacterProperties} from "../core/character/character.utils";
+import {Monster} from "./monster.class";
 
 export enum MonsterLevelDescription {
   level_1 = "a weak monster",
@@ -15,8 +15,6 @@ export enum MonsterLevelDescription {
   level_3 = "a strong looking monster",
   level_4 = "a giant epic monster"
 }
-
-export class Monster extends Character {}
 
 @Injectable()
 export class MonstersService {
@@ -33,6 +31,7 @@ export class MonstersService {
       "health being a base of 10 plus a random number between 1 and 10 multiplied by their level," +
       "attack being 1 plus a random number between 1 and 4 multiplied by their level," +
       "mana being 1 plus a random number between 1 and 4 multiplied by their level," +
+      "defense being 1 plus a random number between 1 and 4 multiplied by their level," +
       "based on a " + data.biome + " environment," +
       "its name and short description should feel like " + MonsterLevelDescription["level_" + data.level] +
       "with 0 skill, " +
@@ -48,7 +47,7 @@ export class MonstersService {
 
     const monsters = [];
     monsterJSONArray.forEach((monster) => {
-      const errors = validateMonsterProperties(monster)
+      const errors = validateCharacterProperties(monster)
       if(errors.length === 0){
         console.log("added: " + monster.name);
         monsters.push(monster);
@@ -62,6 +61,8 @@ export class MonstersService {
       console.log("no valid monsters created");
       throw new NoValidMonstersException();
     }
+
+    console.log("generated monsters seems valid");
 
     if(data.withPictures) {
       for (let monster of monsters) {

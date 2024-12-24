@@ -1,6 +1,6 @@
 import {Body, Controller, Get, Post} from '@nestjs/common';
-import {Skill} from "../core/character.entity";
 import {SkillService} from "./skill.service";
+import {Skill} from "./skill.class";
 
 export class GenerateSkillDto {
   archetype: string = "warrior"; // archetype of the character to create skill for

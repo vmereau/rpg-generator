@@ -1,4 +1,5 @@
-import {Story} from "./story.service";
+import {Story} from "./story.class";
+
 
 /**
  * Validates a Story object's properties.

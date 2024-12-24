@@ -3,10 +3,10 @@ import {ConfigService} from "@nestjs/config/dist";
 import {GenerativeModel} from "@google/generative-ai";
 import {HttpService} from "@nestjs/axios";
 import {skillSchema} from "./skill.schema";
-import {
-  Skill,
-} from "../core/character.entity";
 import {GenerateSkillDto} from "./skill.controller";
+import {Skill} from "./skill.class";
+import {validateSkillProperties} from "./skill.utils";
+import {NoValidSkillException} from "./skill.errors";
 
 @Injectable()
 export class SkillService {
@@ -34,15 +34,13 @@ export class SkillService {
 
     console.log("Skill generated and parsed, checking integrity ...");
 
-    /**const errors = validateStoryProperties(generatedStory)
+    const errors = validateSkillProperties(generatedSkill)
+    if(errors.length !== 0){
+      console.log("Something went wrong in this skill generation, skipping and logging errors...");
+      throw new NoValidSkillException(errors);
+    }
 
-     if(errors.length === 0){
-     console.log("generated Story seems valid");
-     } else {
-     console.log("Something went wrong in this Story generation, skipping and logging errors...");
-     console.log(errors);
-     throw new NoValidStoryException(errors);
-     }**/
+    console.log("generated Skill seems valid");
 
     this.generatedSkill = generatedSkill;
     return generatedSkill;

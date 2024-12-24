@@ -1,6 +1,6 @@
-import {Shop} from "./shop.service";
 import {validateItemProperties} from "../items/item.utils";
-import {Item} from "../items/item.service";
+import {Shop} from "./shop.class";
+import {Item} from "../items/item.class";
 
 export function validateShopProperties(shop: Shop): string[] {
   const errors: string[] = [];

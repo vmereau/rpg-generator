@@ -5,14 +5,7 @@ import {HttpService} from "@nestjs/axios";
 import {storySchema} from "./story.schema";
 import {validateStoryProperties} from "./story.utils";
 import {NoValidStoryException} from "./story.errors";
-
-export class Story {
-  id: number;
-  name: string;
-  story_summary: string;
-  biome: string;
-  boss_name: string;
-}
+import {Story} from "./story.class";
 
 
 @Injectable()
@@ -41,13 +34,12 @@ export class StoryService {
 
     const errors = validateStoryProperties(generatedStory)
 
-    if(errors.length === 0){
-      console.log("generated Story seems valid");
-    } else {
+    if(errors.length !== 0){
       console.log("Something went wrong in this Story generation, skipping and logging errors...");
-      console.log(errors);
       throw new NoValidStoryException(errors);
     }
+
+    console.log("generated Story seems valid");
 
     this.generatedStory = generatedStory;
     return generatedStory;

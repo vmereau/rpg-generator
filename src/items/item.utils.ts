@@ -1,4 +1,4 @@
-import {Armor, Item, Weapon} from "./item.service";
+import {Armor, Item, Weapon} from "./item.class";
 
 type ItemType = Item | Weapon | Armor;
 
