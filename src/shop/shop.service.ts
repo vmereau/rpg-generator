@@ -5,7 +5,7 @@ import {HttpService} from "@nestjs/axios";
 import {Item} from "../items/item.service";
 import {GenerateShopDto} from "./shop.controller";
 import {shopSchema, ShopType} from "./shop.schema";
-import {validateMonsterProperties} from "../monsters/monsters.utils";
+import {validateMonsterProperties} from "../monster/monsters.utils";
 import {validateShopProperties} from "./shop.utils";
 import {NoValidShopException} from "./shop.errors";
 

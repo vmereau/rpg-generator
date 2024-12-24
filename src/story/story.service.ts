@@ -12,7 +12,6 @@ export class Story {
   story_summary: string;
   biome: string;
   boss_name: string;
-  adventurers_names: string[];
 }
 
 
@@ -27,10 +26,9 @@ export class StoryService {
   async generateStory() {
 
     let prompt =
-      "generate a new story with a name, a summary and a biome. The story should be about adventurers going somewhere to fight monsters and do something " +
+      "generate a new story with a name, a summary and a biome. The story should be about an unnamed adventurer going somewhere to fight monsters and do something " +
       "like saving someone, finding a relic or just general exploration of uncharted lands" +
-      "At the end of the story, to succeed, the adventurers must fight an epic foe. Return its name," +
-      "Also create three adventurer name that will partake in this story";
+      "At the end of the story, to succeed, the adventurer must fight an epic foe. Return its name.";
 
     console.log("Generating Story...");
 

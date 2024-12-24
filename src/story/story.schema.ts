@@ -20,14 +20,6 @@ export const storySchema: ResponseSchema =  {
     boss_name: {
       type: SchemaType.STRING,
       description: "The name of the boss that the adventurers must fight at the end of the story",
-    },
-    adventurers_names: {
-      type: SchemaType.ARRAY,
-      description: "An array containing the name of the 3 adventurers generated for this story",
-      items: {
-        type: SchemaType.STRING,
-        description: "the names of the adventurer"
-      }
     }
   }
 }

@@ -1,11 +1,5 @@
 import {ResponseSchema, SchemaType} from "@google/generative-ai";
 
-export enum MonsterSkillType {
-  Attack = "Attack",
-  Heal = "Heal",
-  Lifesteal = "Lifesteal"
-}
-
 export const monstersSchema: ResponseSchema =  {
   description: "Complete schema of the generated monster list",
   type: SchemaType.ARRAY,
@@ -41,36 +35,6 @@ export const monstersSchema: ResponseSchema =  {
         type: SchemaType.INTEGER,
         description: "Mana points of the monster",
         nullable: true
-      },
-      skills: {
-        type: SchemaType.ARRAY,
-        nullable: true,
-        items: {
-          type: SchemaType.OBJECT,
-          properties: {
-            name: {
-              type: SchemaType.STRING,
-              description: "The name of the spell",
-              nullable: false,
-            },
-            skillType: {
-              type: SchemaType.STRING,
-              enum: Object.values(MonsterSkillType),
-              description: "The type of the spell",
-              nullable: false
-            },
-            cost: {
-              type: SchemaType.INTEGER,
-              description: "The cost of the spell",
-              nullable: true
-            },
-            value: {
-              type: SchemaType.INTEGER,
-              description: "The value of the spell ( health restored or damage inflicted )",
-              nullable: false
-            }
-          }
-        }
       }
     }
   }

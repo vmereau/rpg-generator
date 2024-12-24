@@ -3,12 +3,14 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from "@nestjs/config/dist";
 import { HttpModule } from "@nestjs/axios";
-import {MonstersModule} from "./monsters/monsters.module";
+import {MonstersModule} from "./monster/monsters.module";
 import {RouterModule} from "@nestjs/core";
 import {appRoutes} from "./app.routes";
 import {GlobalModule} from "./global.module";
 import {ShopModule} from "./shop/shop.module";
 import {StoryModule} from "./story/story.module";
+import {AdventurerModule} from "./adventurer/adventurer.module";
+import {SkillModule} from "./skill/skill.module";
 
 @Module({
   imports: [
@@ -21,6 +23,8 @@ import {StoryModule} from "./story/story.module";
     MonstersModule,
     ShopModule,
     StoryModule,
+    AdventurerModule,
+    SkillModule,
     RouterModule.register(appRoutes),
   ],
   controllers: [AppController],

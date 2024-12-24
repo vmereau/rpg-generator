@@ -4,8 +4,10 @@ import {GenerativeModel} from "@google/generative-ai";
 import {HttpService} from "@nestjs/axios";
 import {firstValueFrom} from "rxjs";
 import {NoValidMonstersException} from "./monsters.errors";
-import {MonsterSkillType, monstersSchema} from "./Monsters.schema";
+import {monstersSchema} from "./Monsters.schema";
 import {validateMonsterProperties} from "./monsters.utils";
+import {Character} from "../core/character.entity";
+import {GenerateMonstersDto} from "./monsters.controller";
 
 export enum MonsterLevelDescription {
   level_1 = "a weak monster",
@@ -14,30 +16,7 @@ export enum MonsterLevelDescription {
   level_4 = "a giant epic monster"
 }
 
-export class MonsterGenerationData {
-  level: number;
-  numberOfMonsters: number;
-  biome: string;
-  withPictures?: boolean = false;
-}
-
-export class Monster {
-  name: string;
-  level: number;
-  description: string;
-  health: number;
-  attack: number;
-  mana: number;
-  skills : MonsterSkill[];
-  picture?: string;
-}
-
-export class MonsterSkill {
-  name: string;
-  cost: number;
-  skillType: MonsterSkillType;
-  value: number;
-}
+export class Monster extends Character {}
 
 @Injectable()
 export class MonstersService {
@@ -47,10 +26,10 @@ export class MonstersService {
               private httpsService: HttpService,
               @Inject('GENAI_MODEL') private model: GenerativeModel) {}
 
-  async generateMonsters(data: MonsterGenerationData) {
+  async generateMonsters(data: GenerateMonstersDto) {
 
     const prompt =
-      "create a list of " + data.numberOfMonsters + " level " + data.level + " monsters with " +
+      "create a list of " + data.number + " level " + data.level + " monsters with " +
       "health being a base of 10 plus a random number between 1 and 10 multiplied by their level," +
       "attack being 1 plus a random number between 1 and 4 multiplied by their level," +
       "mana being 1 plus a random number between 1 and 4 multiplied by their level," +

@@ -29,19 +29,5 @@ export function validateStoryProperties(story: Story): string[] {
     errors.push("Invalid or missing 'boss_name' property. Must be a non-empty string.");
   }
 
-  if (!Array.isArray(story.adventurers_names)) {
-    errors.push("Invalid 'adventurers_names' property. Must be an array.");
-  } else {
-    if(story.adventurers_names.length === 0){
-      errors.push("Invalid 'adventurers_names' property. Can not be empty.")
-    } else {
-      story.adventurers_names.forEach((name, index) => {
-        if (typeof name !== 'string' || name.trim() === '') {
-          errors.push(`Invalid adventurer_names item at index ${index}: Must be a non-empty string.`);
-        }
-      });
-    }
-  }
-
   return errors;
 }

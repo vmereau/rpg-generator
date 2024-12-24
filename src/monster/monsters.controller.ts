@@ -1,10 +1,10 @@
 import {Body, Controller, Get, Post} from '@nestjs/common';
-import {Monster, MonsterGenerationData, MonstersService} from "./monsters.service";
+import {Monster, MonstersService} from "./monsters.service";
 
 export class GenerateMonstersDto {
-  number: number;
-  level: number;
-  biome: string;
+  number: number = 1;
+  level: number = 1;
+  biome: string = "forest";
   withPictures?: boolean = false;
 }
 
@@ -15,14 +15,7 @@ export class MonstersController {
   @Post("generate")
   generateMonsters(@Body() body: GenerateMonstersDto) {
 
-    const data: MonsterGenerationData = {
-      biome: body.biome || "forest",
-      numberOfMonsters:body.number || 1,
-      level: body.level || 1,
-      withPictures: body.withPictures || false
-    }
-
-    return this.monstersService.generateMonsters(data);
+    return this.monstersService.generateMonsters(body);
   }
 
   @Get()
