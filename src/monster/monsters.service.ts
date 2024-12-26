@@ -24,16 +24,16 @@ export class MonstersService {
               private httpsService: HttpService,
               @Inject('GENAI_MODEL') private model: GenerativeModel) {}
 
-  async generateMonsters(data: GenerateMonstersDto) {
+  public async generateMonsters(data: GenerateMonstersDto) {
 
     const prompt =
-      "create a list of " + data.number + " level " + data.level + " monsters with " +
+      `create a list of ${data.number} ${data.level} monsters with ` +
       "health being a base of 10 plus a random number between 1 and 10 multiplied by their level," +
       "attack being 1 plus a random number between 1 and 4 multiplied by their level," +
       "mana being 1 plus a random number between 1 and 4 multiplied by their level," +
       "defense being 1 plus a random number between 1 and 4 multiplied by their level," +
-      "based on a " + data.biome + " environment," +
-      "its name and short description should feel like " + MonsterLevelDescription["level_" + data.level] +
+      `based on a ${data.biome} environment, ` +
+      `its name and short description should feel like  ${MonsterLevelDescription["level_" + data.level]}, ` +
       "with 0 skill, " +
       "each field should be filled";
 
@@ -96,7 +96,7 @@ export class MonstersService {
     return monsters;
   }
 
-  getGeneratedMonsters(): Monster[] {
+  public getGeneratedMonsters(): Monster[] {
     return this.generatedMonsters;
   }
 }

@@ -11,18 +11,22 @@ import {Story} from "./story.class";
 @Injectable()
 export class StoryService {
   private generatedStory: Story;
+  private previousBiomes: string[] = [];
+  private previousBiomesMaxSize = 5;
 
   constructor(private configService: ConfigService,
               private httpsService: HttpService,
               @Inject('GENAI_MODEL') private model: GenerativeModel) {}
 
-  async generateStory() {
+  public async generateStory() {
 
-    let prompt =
-      "generate a new story with a name, a summary and a biome. The story should be about an unnamed adventurer going somewhere to fight monsters and do something " +
+    /*let prompt =
+      "generate a new and original story (different than the previous ones) with a name, a summary and a biome. " +
+      "The story should be about an unnamed adventurer going somewhere to fight monsters and do something " +
       "like saving someone, finding a relic or just general exploration of uncharted lands" +
-      "At the end of the story, to succeed, the adventurer must fight an epic foe. Return its name." +
-      "the generated story should be totally different than the previous one";
+      "At the end of the story, to succeed, the adventurer must fight an epic foe. Return its name.";*/
+
+    let prompt = `generate a new and original story, the story should be in another biome than the following ones : ${this.previousBiomes.join(", ")}`;
 
     console.log("Generating Story...");
 
@@ -42,10 +46,20 @@ export class StoryService {
     console.log("generated Story seems valid");
 
     this.generatedStory = generatedStory;
+    this.addToPreviousBiomes(this.generatedStory.biome);
+
     return generatedStory;
   }
 
-  getGeneratedStory(): Story {
+  public getGeneratedStory(): Story {
     return this.generatedStory;
+  }
+
+  private addToPreviousBiomes(biome: string): void {
+    this.previousBiomes.push(biome);
+
+    if(this.previousBiomes.length > this.previousBiomesMaxSize) {
+      this.previousBiomes.shift();
+    }
   }
 }

@@ -16,11 +16,11 @@ export class ShopService {
               private httpsService: HttpService,
               @Inject('GENAI_MODEL') private model: GenerativeModel) {}
 
-  async generateShop(data: GenerateShopDto) {
+  public async generateShop(data: GenerateShopDto) {
 
     let prompt =
-      "generate a " + data.type + " shop of " + data.numberOfItems + " level " + data.level + " items, " +
-      "the items should be fit for the following adventurer archetype: " + data.adventurerArchetype + " " +
+      `generate a ${data.type} shop of ${data.numberOfItems} level ${data.level} items, ` +
+      `the items should be fit for the following adventurer archetype: ${data.adventurerArchetype} ` +
       "add a short description for the shop keeper";
 
     switch (data.type) {
@@ -52,7 +52,7 @@ export class ShopService {
     return generatedShop;
   }
 
-  getGeneratedShops(): Shop[] {
+  public getGeneratedShops(): Shop[] {
     return this.generatedShops;
   }
 }

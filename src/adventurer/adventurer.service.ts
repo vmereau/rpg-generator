@@ -11,12 +11,14 @@ import {Adventurer} from "./adventurer.class";
 @Injectable()
 export class AdventurerService {
   private generatedAdventurer: Adventurer;
+  private previousArchetypes: string[] = [];
+  private previousArchetypesMaxSize = 5;
 
   constructor(private configService: ConfigService,
               private httpsService: HttpService,
               @Inject('GENAI_MODEL') private model: GenerativeModel) {}
 
-  async generateAdventurer() {
+  public async generateAdventurer() {
 
     let prompt =
       "generate a level 1 adventurer " +
@@ -30,7 +32,7 @@ export class AdventurerService {
       "with no skill, " +
       // "add a skill with a name that fits the adventurer's description, " +
       "each field should be filled " +
-      "the generated adventurer should be different than the previous generated ones";
+      `the archetype should be different than the following ones: ${this.previousArchetypes.join(", ")}`;
 
     console.log("Generating Adventurer...");
 
@@ -64,10 +66,20 @@ export class AdventurerService {
     console.log(response.data[0].url);*/
 
     this.generatedAdventurer = generatedAdventurer;
+    this.addToPreviousArchetypes(this.generatedAdventurer.archetype);
+
     return generatedAdventurer;
   }
 
-  getGeneratedAdventurer(): Adventurer {
+  public getGeneratedAdventurer(): Adventurer {
     return this.generatedAdventurer;
+  }
+
+  private addToPreviousArchetypes(archetype: string): void {
+    this.previousArchetypes.push(archetype);
+
+    if(this.previousArchetypes.length > this.previousArchetypesMaxSize){
+      this.previousArchetypes.shift();
+    }
   }
 }

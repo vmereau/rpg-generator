@@ -16,12 +16,12 @@ export class SkillService {
               private httpsService: HttpService,
               @Inject('GENAI_MODEL') private model: GenerativeModel) {}
 
-  async generateSkill(data: GenerateSkillDto) {
+  public async generateSkill(data: GenerateSkillDto) {
 
     let prompt =
-      "generate an original skill for the following archetype: " + data.archetype + " " +
-      "the cost should be 5 multiplied by " + data.level + " " +
-      "it can have one or multiple effects, the effect value should be 5 plus a random number between 1 and 5 multiplied by " +data.level + " " +
+      `generate an original skill for the following archetype: ${data.archetype} ` +
+      `the cost should be 5 multiplied by ${data.level} ` +
+      `it can have one or multiple effects, the effect value should be 5 plus a random number between 1 and 5 multiplied by ${data.level} ` +
       "all fields should be filled " +
       "the generated skill should be different than the previous one";
 
@@ -46,7 +46,7 @@ export class SkillService {
     return generatedSkill;
   }
 
-  getGeneratedSkill(): Skill {
+  public getGeneratedSkill(): Skill {
     return this.generatedSkill;
   }
 }
