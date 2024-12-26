@@ -34,6 +34,11 @@ export const adventurerSchema: ResponseSchema =  {
       description: "Mana points of the adventurer",
       nullable: false
     },
+    defense: {
+      type: SchemaType.INTEGER,
+      description: "Defense of the adventurer",
+      nullable: false
+    },
     archetype : {
       type: SchemaType.STRING,
       description: "The archetype of the adventurer",

@@ -35,6 +35,11 @@ export const monstersSchema: ResponseSchema =  {
         type: SchemaType.INTEGER,
         description: "Mana points of the monster",
         nullable: true
+      },
+      defense: {
+        type: SchemaType.INTEGER,
+        description: "Defense of the monster",
+        nullable: true
       }
     }
   }

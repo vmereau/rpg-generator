@@ -47,6 +47,13 @@ export function validateCharacterProperties(character: Character | Adventurer): 
     errors.push("Character mana has to be a positive number")
   }
 
+  // Check Defense
+  if (typeof character.defense !== 'number') {
+    errors.push("Character defense is missing or is not a number.");
+  } else if(character.defense < 0) {
+    errors.push("Character defense has to be a positive number")
+  }
+
   if(character instanceof Adventurer){
     if (!character.archetype) {
       errors.push("Character description is missing or empty.");
