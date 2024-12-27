@@ -11,6 +11,7 @@ import {ShopModule} from "./shop/shop.module";
 import {StoryModule} from "./story/story.module";
 import {AdventurerModule} from "./adventurer/adventurer.module";
 import {SkillModule} from "./skill/skill.module";
+import {ChoiceModule} from "./choice/choice.module";
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import {SkillModule} from "./skill/skill.module";
     StoryModule,
     AdventurerModule,
     SkillModule,
+    ChoiceModule,
     RouterModule.register(appRoutes),
   ],
   controllers: [AppController],

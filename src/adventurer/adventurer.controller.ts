@@ -11,9 +11,4 @@ export class AdventurerController {
 
     return this.adventurerService.generateAdventurer();
   }
-
-  @Get()
-  getGeneratedAdventurer(): Adventurer {
-    return this.adventurerService.getGeneratedAdventurer();
-  }
 }

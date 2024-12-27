@@ -51,10 +51,6 @@ export class StoryService {
     return generatedStory;
   }
 
-  public getGeneratedStory(): Story {
-    return this.generatedStory;
-  }
-
   private addToPreviousBiomes(biome: string): void {
     this.previousBiomes.push(biome);
 

@@ -95,8 +95,4 @@ export class MonstersService {
 
     return monsters;
   }
-
-  public getGeneratedMonsters(): Monster[] {
-    return this.generatedMonsters;
-  }
 }

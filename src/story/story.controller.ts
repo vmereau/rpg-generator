@@ -7,13 +7,8 @@ export class StoryController {
   constructor(private readonly storyService: StoryService) {}
 
   @Post("generate")
-  generateShop(): Promise<Story> {
+  generateStory(): Promise<Story> {
 
     return this.storyService.generateStory();
-  }
-
-  @Get()
-  getGeneratedShops(): Story {
-    return this.storyService.getGeneratedStory();
   }
 }

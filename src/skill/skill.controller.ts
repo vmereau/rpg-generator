@@ -16,9 +16,4 @@ export class SkillController {
 
     return this.skillService.generateSkill(body);
   }
-
-  @Get()
-  getGeneratedSkill(): Skill {
-    return this.skillService.getGeneratedSkill();
-  }
 }

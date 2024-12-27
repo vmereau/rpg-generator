@@ -19,9 +19,4 @@ export class ShopController {
 
     return this.shopService.generateShop(body);
   }
-
-  @Get()
-  getGeneratedShops(): Shop[] {
-    return this.shopService.getGeneratedShops();
-  }
 }

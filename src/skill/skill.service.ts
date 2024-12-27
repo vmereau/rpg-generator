@@ -45,8 +45,4 @@ export class SkillService {
     this.generatedSkill = generatedSkill;
     return generatedSkill;
   }
-
-  public getGeneratedSkill(): Skill {
-    return this.generatedSkill;
-  }
 }

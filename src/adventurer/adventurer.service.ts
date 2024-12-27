@@ -71,10 +71,6 @@ export class AdventurerService {
     return generatedAdventurer;
   }
 
-  public getGeneratedAdventurer(): Adventurer {
-    return this.generatedAdventurer;
-  }
-
   private addToPreviousArchetypes(archetype: string): void {
     this.previousArchetypes.push(archetype);
 

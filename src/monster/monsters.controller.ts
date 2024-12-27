@@ -18,9 +18,4 @@ export class MonstersController {
 
     return this.monstersService.generateMonsters(body);
   }
-
-  @Get()
-  getGeneratedMonsters(): Monster[] {
-    return this.monstersService.getGeneratedMonsters();
-  }
 }

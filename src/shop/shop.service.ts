@@ -51,8 +51,4 @@ export class ShopService {
     this.generatedShops.push(generatedShop);
     return generatedShop;
   }
-
-  public getGeneratedShops(): Shop[] {
-    return this.generatedShops;
-  }
 }
