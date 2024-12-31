@@ -2,10 +2,10 @@
 
 import { HttpException, HttpStatus } from '@nestjs/common';
 
-export class NoValidSkillException extends HttpException {
+export class NoValidChoice extends HttpException {
   constructor(errors?: string[]) {
     super(
-      'No valid skill was created. Try again' + errors,
+      'No valid choice was created. Try again' + errors,
       HttpStatus.BAD_REQUEST,
     );
   }

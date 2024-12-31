@@ -1,4 +1,3 @@
-
 export class Story {
   name: string;
   story_summary: string;

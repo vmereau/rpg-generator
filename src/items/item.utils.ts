@@ -1,4 +1,4 @@
-import {Armor, Item, Weapon} from "./item.class";
+import { Armor, Item, Weapon } from './item.class';
 
 type ItemType = Item | Weapon | Armor;
 
@@ -17,7 +17,11 @@ export function validateItemProperties(item: ItemType): string[] {
     errors.push("Invalid 'level' property. Must be a non-negative number.");
   }
 
-  if (!item.description || typeof item.description !== 'string' || item.description.trim() === '') {
+  if (
+    !item.description ||
+    typeof item.description !== 'string' ||
+    item.description.trim() === ''
+  ) {
     errors.push("Invalid or missing 'description' property.");
   }
 
@@ -32,8 +36,6 @@ export function validateItemProperties(item: ItemType): string[] {
       errors.push("Invalid 'defense' property. Must be a non-negative number.");
     }
   }
-
-  if(errors.length > 0) console.log(errors);
 
   return errors;
 }

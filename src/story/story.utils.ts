@@ -1,5 +1,4 @@
-import {Story} from "./story.class";
-
+import { Story } from './story.class';
 
 /**
  * Validates a Story object's properties.
@@ -14,20 +13,44 @@ export function validateStoryProperties(story: Story): string[] {
     return errors;
   }
 
-  if (!story.name || typeof story.name !== 'string' || story.name.trim() === '') {
-    errors.push("Invalid or missing 'name' property. Must be a non-empty string.");
+  if (
+    !story.name ||
+    typeof story.name !== 'string' ||
+    story.name.trim() === ''
+  ) {
+    errors.push(
+      "Invalid or missing 'name' property. Must be a non-empty string.",
+    );
   }
 
-  if (!story.story_summary || typeof story.story_summary !== 'string' || story.story_summary.trim() === '') {
-    errors.push("Invalid or missing 'story_summary' property. Must be a non-empty string.");
+  if (
+    !story.story_summary ||
+    typeof story.story_summary !== 'string' ||
+    story.story_summary.trim() === ''
+  ) {
+    errors.push(
+      "Invalid or missing 'story_summary' property. Must be a non-empty string.",
+    );
   }
 
-  if (!story.biome || typeof story.biome !== 'string' || story.biome.trim() === '') {
-    errors.push("Invalid or missing 'biome' property. Must be a non-empty string.");
+  if (
+    !story.biome ||
+    typeof story.biome !== 'string' ||
+    story.biome.trim() === ''
+  ) {
+    errors.push(
+      "Invalid or missing 'biome' property. Must be a non-empty string.",
+    );
   }
 
-  if (!story.boss_name || typeof story.boss_name !== 'string' || story.boss_name.trim() === '') {
-    errors.push("Invalid or missing 'boss_name' property. Must be a non-empty string.");
+  if (
+    !story.boss_name ||
+    typeof story.boss_name !== 'string' ||
+    story.boss_name.trim() === ''
+  ) {
+    errors.push(
+      "Invalid or missing 'boss_name' property. Must be a non-empty string.",
+    );
   }
 
   return errors;

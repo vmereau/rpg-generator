@@ -1,4 +1,4 @@
-import {Item} from "../items/item.class";
+import { Item } from '../items/item.class';
 
 export class Shop {
   id: number;

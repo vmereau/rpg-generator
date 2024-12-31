@@ -12,13 +12,13 @@ export class SkillEffect {
 }
 
 export enum SkillTargetCharacterEnum {
-  self = "self",
-  enemy = "enemy"
+  self = 'self',
+  enemy = 'enemy',
 }
 
 export enum SKillTargetPropertyEnum {
-  health = "health",
-  mana = "mana",
-  attack = "attack",
-  defense = "defense"
+  health = 'health',
+  mana = 'mana',
+  attack = 'attack',
+  defense = 'defense',
 }

@@ -4,6 +4,9 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 
 export class CharacterNotValidException extends HttpException {
   constructor(errors?: string[]) {
-    super('No valid character was generated. Try again' + errors, HttpStatus.BAD_REQUEST);
+    super(
+      'No valid character was generated. Try again' + errors,
+      HttpStatus.BAD_REQUEST,
+    );
   }
 }

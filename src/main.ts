@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import {config} from "dotenv";
-import {ConfigService} from "@nestjs/config/dist";
+import { config } from 'dotenv';
+import { ConfigService } from '@nestjs/config/dist';
 
 config();
 

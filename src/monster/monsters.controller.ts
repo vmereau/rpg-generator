@@ -1,11 +1,10 @@
-import {Body, Controller, Get, Post} from '@nestjs/common';
-import {MonstersService} from "./monsters.service";
-import {Monster} from "./monster.class";
+import { Body, Controller, Post } from '@nestjs/common';
+import { MonstersService } from './monsters.service';
 
 export class GenerateMonstersDto {
-  number: number = 1;
-  level: number = 1;
-  biome: string = "forest";
+  number = 1;
+  level = 1;
+  biome = 'forest';
   withPictures?: boolean = false;
 }
 
@@ -13,9 +12,8 @@ export class GenerateMonstersDto {
 export class MonstersController {
   constructor(private readonly monstersService: MonstersService) {}
 
-  @Post("generate")
+  @Post('generate')
   generateMonsters(@Body() body: GenerateMonstersDto) {
-
     return this.monstersService.generateMonsters(body);
   }
 }

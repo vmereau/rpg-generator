@@ -1,6 +1,6 @@
-import {validateItemProperties} from "../items/item.utils";
-import {Shop} from "./shop.class";
-import {Item} from "../items/item.class";
+import { validateItemProperties } from '../items/item.utils';
+import { Shop } from './shop.class';
+import { Item } from '../items/item.class';
 
 export function validateShopProperties(shop: Shop): string[] {
   const errors: string[] = [];
@@ -9,7 +9,11 @@ export function validateShopProperties(shop: Shop): string[] {
     errors.push("Invalid or missing 'name' property.");
   }
 
-  if (!shop.shopkeeper_description || typeof shop.shopkeeper_description !== 'string' || shop.shopkeeper_description.trim() === '') {
+  if (
+    !shop.shopkeeper_description ||
+    typeof shop.shopkeeper_description !== 'string' ||
+    shop.shopkeeper_description.trim() === ''
+  ) {
     errors.push("Invalid or missing 'shopkeeper_description' property.");
   }
 
@@ -19,10 +23,13 @@ export function validateShopProperties(shop: Shop): string[] {
     shop.goods.forEach((item: Item, index) => {
       const itemErrors = validateItemProperties(item);
       if (itemErrors.length > 0) {
-        errors.push(...itemErrors.map(error => `Error in goods at index ${index}: ${error}`));
+        errors.push(
+          ...itemErrors.map(
+            (error) => `Error in goods at index ${index}: ${error}`,
+          ),
+        );
       }
-
-    })
+    });
   }
 
   return errors;

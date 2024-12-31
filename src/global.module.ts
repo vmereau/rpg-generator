@@ -1,6 +1,6 @@
-import { Global, Module } from "@nestjs/common";
-import {ConfigModule, ConfigService} from "@nestjs/config/dist";
-import {GoogleGenerativeAI} from "@google/generative-ai";
+import { Global, Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config/dist';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 @Global()
 @Module({
@@ -12,9 +12,9 @@ import {GoogleGenerativeAI} from "@google/generative-ai";
       useFactory: async (configService: ConfigService) => {
         const apiKey = configService.get('GEMINI_API_KEY');
         const genAI = new GoogleGenerativeAI(apiKey);
-        return  genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+        return genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
       },
-    }
+    },
   ],
   exports: ['GENAI_MODEL'],
 })

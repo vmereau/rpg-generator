@@ -1,4 +1,4 @@
-import {Skill} from "../../skill/skill.class";
+import { Skill } from '../../skill/skill.class';
 
 export class Character {
   name: string;
@@ -8,6 +8,6 @@ export class Character {
   attack: number;
   mana: number;
   defense: number;
-  skills : Skill[];
+  skills: Skill[];
   picture?: string;
 }

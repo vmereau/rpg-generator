@@ -1,14 +1,14 @@
-export enum ChoiceType {
-  Fight= "Fight",
-  Elite_fight = "Elite_fight",
-  Treasure = "Treasure", // Strong item
-  Power = "Power", // new skill
-  Shop = "Shop",
-  Other_choices = "Other_choices"
+export enum ChoiceTypeEnum {
+  Fight = 'Fight',
+  Elite_fight = 'Elite_fight',
+  Treasure = 'Treasure', // Strong item
+  Power = 'Power', // new skill
+  Shop = 'Shop',
+  Other_choices = 'Other_choices',
 }
 
-export class Choice  {
+export class Choice {
   title: string;
   description: string;
-  type: ChoiceType;
+  type: ChoiceTypeEnum;
 }

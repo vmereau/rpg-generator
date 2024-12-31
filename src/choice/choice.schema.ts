@@ -1,28 +1,28 @@
-import {ResponseSchema, SchemaType} from "@google/generative-ai";
-import {ChoiceType} from "./choice.class";
+import { ResponseSchema, SchemaType } from '@google/generative-ai';
+import { ChoiceTypeEnum } from './choice.class';
 
-export const choiceSchema: ResponseSchema =  {
-  description: "Complete schema of the generated choices",
+export const choiceSchema: ResponseSchema = {
+  description: 'Complete schema of the generated choices',
   type: SchemaType.ARRAY,
   items: {
     type: SchemaType.OBJECT,
     properties: {
       title: {
         type: SchemaType.STRING,
-        description: "Title of the choice",
-        nullable: false
+        description: 'Title of the choice',
+        nullable: false,
       },
       description: {
         type: SchemaType.STRING,
-        description: "Short description of the choice",
-        nullable: false
+        description: 'Short description of the choice',
+        nullable: false,
       },
       type: {
         type: SchemaType.STRING,
-        enum: Object.values(ChoiceType),
-        description: "The type of the choice",
+        enum: Object.values(ChoiceTypeEnum),
+        description: 'The type of the choice',
         nullable: false,
       },
-    }
-  }
-}
+    },
+  },
+};
