@@ -4,7 +4,7 @@ export enum ChoiceTypeEnum {
   Treasure = 'Treasure', // Strong item
   Power = 'Power', // new skill
   Shop = 'Shop',
-  Other_choices = 'Other_choices',
+  Choices = 'Choices',
 }
 
 export class Choice {

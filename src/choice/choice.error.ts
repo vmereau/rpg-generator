@@ -10,3 +10,9 @@ export class NoValidChoice extends HttpException {
     );
   }
 }
+
+export class GenerateChoiceBodyError extends HttpException {
+  constructor(errors?: string[]) {
+    super('Missing properties from body: ' + errors, HttpStatus.BAD_REQUEST);
+  }
+}
