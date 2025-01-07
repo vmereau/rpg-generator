@@ -3,12 +3,23 @@ export class Item {
   cost: number;
   level: number;
   description: string;
+  type: ItemTypeEnum;
+  effects: ItemEffect[];
 }
 
-export class Weapon extends Item {
-  damage: number;
+export class ItemEffect {
+  targetProperty: ItemTargetPropertyEnum;
+  value: number;
 }
 
-export class Armor extends Item {
-  defense: number;
+export enum ItemTargetPropertyEnum {
+  health = 'health',
+  mana = 'mana',
+  attack = 'attack',
+  defense = 'defense',
+}
+
+export enum ItemTypeEnum {
+  equipment = 'equipment',
+  consumable = 'consumable',
 }

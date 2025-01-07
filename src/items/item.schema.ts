@@ -1,4 +1,5 @@
 import { ResponseSchema, SchemaType } from '@google/generative-ai';
+import { ItemTargetPropertyEnum, ItemTypeEnum } from './item.class';
 
 export const itemSchema: ResponseSchema = {
   description: 'Complete schema of the generated Item',
@@ -24,15 +25,33 @@ export const itemSchema: ResponseSchema = {
       description: 'Short description of the item',
       nullable: false,
     },
-    damage: {
-      type: SchemaType.INTEGER,
-      description: 'If the item is a weapon, this is its damage inflicted',
-      nullable: true,
+    type: {
+      type: SchemaType.STRING,
+      description: 'The type of the item',
+      nullable: false,
+      enum: Object.values(ItemTypeEnum),
     },
-    defense: {
-      type: SchemaType.INTEGER,
-      description: 'If the item is an armor, this is its defense',
-      nullable: true,
+    effects: {
+      type: SchemaType.ARRAY,
+      description: 'The effects of the item',
+      nullable: false,
+      items: {
+        type: SchemaType.OBJECT,
+        nullable: false,
+        properties: {
+          targetProperty: {
+            type: SchemaType.STRING,
+            description: 'the targeted property of this effect',
+            nullable: false,
+            enum: Object.values(ItemTargetPropertyEnum),
+          },
+          value: {
+            type: SchemaType.INTEGER,
+            description: 'The value of the effect, negative or positive',
+            nullable: false,
+          },
+        },
+      },
     },
   },
 };

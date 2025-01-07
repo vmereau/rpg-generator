@@ -2,7 +2,7 @@ import {
   Skill,
   SkillEffect,
   SkillTargetCharacterEnum,
-  SKillTargetPropertyEnum,
+  SkillTargetPropertyEnum,
 } from './skill.class';
 
 /**
@@ -44,12 +44,12 @@ export function validateSkillProperties(skill: Skill): string[] {
     );
   }
 
-  if (!Array.isArray(skill.effect)) {
+  if (!Array.isArray(skill.effects)) {
     errors.push("Invalid or missing 'effect' property. Must be an array.");
-  } else if (skill.effect.length === 0) {
+  } else if (skill.effects.length === 0) {
     errors.push("Invalid 'effect' property. Must have at least one effect");
   } else {
-    skill.effect.forEach((effect, index) => {
+    skill.effects.forEach((effect, index) => {
       const effectErrors = validateSkillEffect(effect, index);
       errors.push(...effectErrors);
     });
@@ -71,8 +71,8 @@ function validateSkillEffect(effect: SkillEffect, index: number): string[] {
   if (
     !effect.targetProperty ||
     typeof effect.targetProperty !== 'string' ||
-    !Object.values(SKillTargetPropertyEnum).includes(
-      effect.targetProperty as SKillTargetPropertyEnum,
+    !Object.values(SkillTargetPropertyEnum).includes(
+      effect.targetProperty as SkillTargetPropertyEnum,
     )
   ) {
     errors.push(

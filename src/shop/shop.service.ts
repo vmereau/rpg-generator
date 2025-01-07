@@ -3,15 +3,13 @@ import { ConfigService } from '@nestjs/config/dist';
 import { GenerativeModel } from '@google/generative-ai';
 import { HttpService } from '@nestjs/axios';
 import { GenerateShopDto } from './shop.controller';
-import { shopSchema, ShopType } from './shop.schema';
+import { shopSchema } from './shop.schema';
 import { validateShopProperties } from './shop.utils';
 import { NoValidShopException } from './shop.errors';
 import { Shop } from './shop.class';
 
 @Injectable()
 export class ShopService {
-  private generatedShops: Shop[] = [];
-
   constructor(
     private configService: ConfigService,
     private httpsService: HttpService,
@@ -19,19 +17,10 @@ export class ShopService {
   ) {}
 
   public async generateShop(data: GenerateShopDto) {
-    let prompt =
-      `generate a ${data.type} shop of ${data.numberOfItems} level ${data.level} items, ` +
-      `the items should be fit for the following adventurer archetype: ${data.adventurerArchetype} ` +
+    const prompt =
+      `generate a shop of ${data.numberOfItems} level ${data.level} items, ` +
+      `the items should be fit for the following adventurer archetype: ${data.adventurerArchetype} and have one or multiple effects` +
       'add a short description for the shop keeper';
-
-    switch (data.type) {
-      case ShopType.Weapons:
-        prompt += 'add damage values for the items';
-        break;
-      case ShopType.Armor:
-        prompt += 'add armor values for the items';
-        break;
-    }
 
     console.log('Generating shop...');
 
@@ -50,8 +39,6 @@ export class ShopService {
     }
 
     console.log('generated Shop seems valid');
-
-    this.generatedShops.push(generatedShop);
     return generatedShop;
   }
 }

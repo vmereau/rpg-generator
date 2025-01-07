@@ -2,11 +2,11 @@ export class Skill {
   name: string;
   description: string;
   cost: number;
-  effect: SkillEffect[];
+  effects: SkillEffect[];
 }
 
 export class SkillEffect {
-  targetProperty: SKillTargetPropertyEnum;
+  targetProperty: SkillTargetPropertyEnum;
   value: number;
   targetCharacter: SkillTargetCharacterEnum;
 }
@@ -16,7 +16,7 @@ export enum SkillTargetCharacterEnum {
   enemy = 'enemy',
 }
 
-export enum SKillTargetPropertyEnum {
+export enum SkillTargetPropertyEnum {
   health = 'health',
   mana = 'mana',
   attack = 'attack',

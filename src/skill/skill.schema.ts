@@ -1,7 +1,7 @@
 import { ResponseSchema, SchemaType } from '@google/generative-ai';
 import {
   SkillTargetCharacterEnum,
-  SKillTargetPropertyEnum,
+  SkillTargetPropertyEnum,
 } from './skill.class';
 
 export const skillSchema: ResponseSchema = {
@@ -24,7 +24,7 @@ export const skillSchema: ResponseSchema = {
       description: 'The cost of the skill',
       nullable: true,
     },
-    effect: {
+    effects: {
       type: SchemaType.ARRAY,
       description: 'The effects of the skill',
       nullable: false,
@@ -36,7 +36,7 @@ export const skillSchema: ResponseSchema = {
             type: SchemaType.STRING,
             description: 'the targeted property of this effect',
             nullable: false,
-            enum: Object.values(SKillTargetPropertyEnum),
+            enum: Object.values(SkillTargetPropertyEnum),
           },
           value: {
             type: SchemaType.INTEGER,

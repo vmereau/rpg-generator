@@ -1,12 +1,6 @@
 import { ResponseSchema, SchemaType } from '@google/generative-ai';
 import { itemSchema } from '../items/item.schema';
 
-export enum ShopType {
-  Weapons = 'Weapons',
-  Potions = 'Potions',
-  Armor = 'Armor',
-}
-
 export const shopSchema: ResponseSchema = {
   description: 'Complete schema of the generated Shop',
   type: SchemaType.OBJECT,
@@ -19,12 +13,6 @@ export const shopSchema: ResponseSchema = {
     shopkeeper_description: {
       type: SchemaType.STRING,
       description: 'Short description of the shopkeeper',
-    },
-    shop_type: {
-      type: SchemaType.STRING,
-      enum: Object.values(ShopType),
-      description: 'The type of the items sold by this shop',
-      nullable: false,
     },
     goods: {
       type: SchemaType.ARRAY,
