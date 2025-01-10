@@ -42,7 +42,7 @@ function validateItemEffects(effect: ItemEffect, index: number): string[] {
 
   if (typeof effect !== 'object' || effect === null) {
     errors.push(
-      `Invalid 'effect' at index ${index}. Effect must be an object.`,
+      `Invalid 'effect' at index ${index}. Effect must be an object.`
     );
     return errors;
   }
@@ -51,17 +51,17 @@ function validateItemEffects(effect: ItemEffect, index: number): string[] {
     !effect.targetProperty ||
     typeof effect.targetProperty !== 'string' ||
     !Object.values(ItemTargetPropertyEnum).includes(
-      effect.targetProperty as ItemTargetPropertyEnum,
+      effect.targetProperty as ItemTargetPropertyEnum
     )
   ) {
     errors.push(
-      `Invalid 'targetProperty' property at index ${index}. Must be a valid SkillTargetPropertyEnum.`,
+      `Invalid 'targetProperty' property at index ${index}. Must be a valid SkillTargetPropertyEnum.`
     );
   }
 
   if (typeof effect.value !== 'number') {
     errors.push(
-      `Invalid 'value' property at index ${index}. Must be a number.`,
+      `Invalid 'value' property at index ${index}. Must be a number.`
     );
   }
 

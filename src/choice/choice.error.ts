@@ -6,7 +6,7 @@ export class NoValidChoice extends HttpException {
   constructor(errors?: string[]) {
     super(
       'No valid choice was created. Try again' + errors,
-      HttpStatus.BAD_REQUEST,
+      HttpStatus.BAD_REQUEST
     );
   }
 }

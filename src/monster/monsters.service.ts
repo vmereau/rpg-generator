@@ -23,7 +23,7 @@ export class MonstersService {
   constructor(
     private configService: ConfigService,
     private httpsService: HttpService,
-    @Inject('GENAI_MODEL') private model: GenerativeModel,
+    @Inject('GENAI_MODEL') private model: GenerativeModel
   ) {}
 
   public async generateMonsters(data: GenerateMonstersDto) {
@@ -49,14 +49,14 @@ export class MonstersService {
     console.log('monsters generated and parsed, checking integrity ...');
 
     const monsters = [];
-    monsterJSONArray.forEach((monster) => {
+    monsterJSONArray.forEach(monster => {
       const errors = validateCharacterProperties(monster);
       if (errors.length === 0) {
         console.log('added: ' + monster.name);
         monsters.push(monster);
       } else {
         console.log(
-          'Something went wrong in this monster generation, skipping and logging errors...',
+          'Something went wrong in this monster generation, skipping and logging errors...'
         );
         console.log(errors);
       }
@@ -75,7 +75,7 @@ export class MonstersService {
           'Generating picture for monster: ' +
             monster.name +
             ' with description: ' +
-            monster.description,
+            monster.description
         );
         const body = {
           key: this.configService.get('STABLE_DIFFUSION_API_KEY'),
@@ -97,8 +97,8 @@ export class MonstersService {
               headers: {
                 'Content-Type': 'application/json',
               },
-            },
-          ),
+            }
+          )
         );
 
         if (response.data.status === 'error') {

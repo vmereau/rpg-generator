@@ -16,7 +16,7 @@ export class AdventurerService {
   constructor(
     private configService: ConfigService,
     private httpsService: HttpService,
-    @Inject('GENAI_MODEL') private model: GenerativeModel,
+    @Inject('GENAI_MODEL') private model: GenerativeModel
   ) {}
 
   public async generateAdventurer() {
@@ -33,7 +33,7 @@ export class AdventurerService {
       // "add a skill with a name that fits the adventurer's description, " +
       'each field should be filled ' +
       `the archetype should be different than the following ones: ${this.previousArchetypes.join(
-        ', ',
+        ', '
       )}`;
 
     console.log('Generating Adventurer...');
@@ -49,7 +49,7 @@ export class AdventurerService {
 
     if (errors.length !== 0) {
       console.log(
-        'Something went wrong in this monster generation, logging errors...',
+        'Something went wrong in this monster generation, logging errors...'
       );
       throw new CharacterNotValidException(errors);
     }

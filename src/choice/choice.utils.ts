@@ -13,8 +13,8 @@ export function validateChoicesProperties(choices: Choice[]): string[] {
       if (itemErrors.length > 0) {
         errors.push(
           ...itemErrors.map(
-            (error) => `Error in choice at index ${index}: ${error}`,
-          ),
+            error => `Error in choice at index ${index}: ${error}`
+          )
         );
       }
     });
@@ -54,7 +54,7 @@ export function validateChoiceProperties(choice: Choice): string[] {
 }
 
 export function validateGenerateChoiceDto(
-  generateChoicesDto: GenerateChoicesDto,
+  generateChoicesDto: GenerateChoicesDto
 ): string[] {
   const errors: string[] = [];
 

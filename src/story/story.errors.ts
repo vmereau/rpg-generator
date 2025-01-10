@@ -6,7 +6,7 @@ export class NoValidStoryException extends HttpException {
   constructor(errors?: string[]) {
     super(
       'No valid story was created. Try again' + errors,
-      HttpStatus.BAD_REQUEST,
+      HttpStatus.BAD_REQUEST
     );
   }
 }

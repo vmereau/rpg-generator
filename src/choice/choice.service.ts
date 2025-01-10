@@ -13,7 +13,7 @@ export class ChoiceService {
   constructor(
     private configService: ConfigService,
     private httpsService: HttpService,
-    @Inject('GENAI_MODEL') private model: GenerativeModel,
+    @Inject('GENAI_MODEL') private model: GenerativeModel
   ) {}
 
   public async generateChoices(data: GenerateChoicesDto): Promise<Choice[]> {
@@ -35,7 +35,7 @@ export class ChoiceService {
     const errors = validateChoicesProperties(generatedChoices);
     if (errors.length !== 0) {
       console.log(
-        'Something went wrong in choices generation, skipping and logging errors...',
+        'Something went wrong in choices generation, skipping and logging errors...'
       );
       throw new NoValidChoice(errors);
     }

@@ -24,7 +24,7 @@ export function validateSkillProperties(skill: Skill): string[] {
     skill.name.trim() === ''
   ) {
     errors.push(
-      "Invalid or missing 'name' property. Must be a non-empty string.",
+      "Invalid or missing 'name' property. Must be a non-empty string."
     );
   }
 
@@ -34,13 +34,13 @@ export function validateSkillProperties(skill: Skill): string[] {
     skill.description.trim() === ''
   ) {
     errors.push(
-      "Invalid or missing 'description' property. Must be a non-empty string.",
+      "Invalid or missing 'description' property. Must be a non-empty string."
     );
   }
 
   if (typeof skill.cost !== 'number' || skill.cost < 0) {
     errors.push(
-      "Invalid or missing 'cost' property. Must be a non-negative number.",
+      "Invalid or missing 'cost' property. Must be a non-negative number."
     );
   }
 
@@ -63,7 +63,7 @@ function validateSkillEffect(effect: SkillEffect, index: number): string[] {
 
   if (typeof effect !== 'object' || effect === null) {
     errors.push(
-      `Invalid 'effect' at index ${index}. Effect must be an object.`,
+      `Invalid 'effect' at index ${index}. Effect must be an object.`
     );
     return errors;
   }
@@ -72,17 +72,17 @@ function validateSkillEffect(effect: SkillEffect, index: number): string[] {
     !effect.targetProperty ||
     typeof effect.targetProperty !== 'string' ||
     !Object.values(SkillTargetPropertyEnum).includes(
-      effect.targetProperty as SkillTargetPropertyEnum,
+      effect.targetProperty as SkillTargetPropertyEnum
     )
   ) {
     errors.push(
-      `Invalid 'targetProperty' property at index ${index}. Must be a valid SkillTargetPropertyEnum.`,
+      `Invalid 'targetProperty' property at index ${index}. Must be a valid SkillTargetPropertyEnum.`
     );
   }
 
   if (typeof effect.value !== 'number') {
     errors.push(
-      `Invalid 'value' property at index ${index}. Must be a number.`,
+      `Invalid 'value' property at index ${index}. Must be a number.`
     );
   }
 
@@ -90,11 +90,11 @@ function validateSkillEffect(effect: SkillEffect, index: number): string[] {
     !effect.targetCharacter ||
     typeof effect.targetCharacter !== 'string' ||
     !Object.values(SkillTargetCharacterEnum).includes(
-      effect.targetCharacter as SkillTargetCharacterEnum,
+      effect.targetCharacter as SkillTargetCharacterEnum
     )
   ) {
     errors.push(
-      `Invalid 'targetCharacter' property at index ${index}. Must be a valid SkillTargetCharacterEnum.`,
+      `Invalid 'targetCharacter' property at index ${index}. Must be a valid SkillTargetCharacterEnum.`
     );
   }
 

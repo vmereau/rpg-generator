@@ -15,7 +15,7 @@ export class SkillService {
   constructor(
     private configService: ConfigService,
     private httpsService: HttpService,
-    @Inject('GENAI_MODEL') private model: GenerativeModel,
+    @Inject('GENAI_MODEL') private model: GenerativeModel
   ) {}
 
   public async generateSkill(data: GenerateSkillDto) {
@@ -38,7 +38,7 @@ export class SkillService {
     const errors = validateSkillProperties(generatedSkill);
     if (errors.length !== 0) {
       console.log(
-        'Something went wrong in this skill generation, skipping and logging errors...',
+        'Something went wrong in this skill generation, skipping and logging errors...'
       );
       throw new NoValidSkillException(errors);
     }

@@ -13,7 +13,7 @@ export class ShopService {
   constructor(
     private configService: ConfigService,
     private httpsService: HttpService,
-    @Inject('GENAI_MODEL') private model: GenerativeModel,
+    @Inject('GENAI_MODEL') private model: GenerativeModel
   ) {}
 
   public async generateShop(data: GenerateShopDto) {
@@ -33,7 +33,7 @@ export class ShopService {
     const errors = validateShopProperties(generatedShop);
     if (errors.length !== 0) {
       console.log(
-        'Something went wrong in this shop generation, skipping and logging errors...',
+        'Something went wrong in this shop generation, skipping and logging errors...'
       );
       throw new NoValidShopException(errors);
     }

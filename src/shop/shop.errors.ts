@@ -6,7 +6,7 @@ export class NoValidShopException extends HttpException {
   constructor(errors?: string[]) {
     super(
       'No valid shop was created. Try again' + errors,
-      HttpStatus.BAD_REQUEST,
+      HttpStatus.BAD_REQUEST
     );
   }
 }

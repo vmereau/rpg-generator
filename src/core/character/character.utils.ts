@@ -2,7 +2,7 @@ import { Adventurer } from '../../adventurer/adventurer.class';
 import { Character } from './character.class';
 
 export function validateCharacterProperties(
-  character: Character | Adventurer,
+  character: Character | Adventurer
 ): string[] {
   const errors: string[] = [];
 

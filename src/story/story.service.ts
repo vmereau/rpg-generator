@@ -16,7 +16,7 @@ export class StoryService {
   constructor(
     private configService: ConfigService,
     private httpsService: HttpService,
-    @Inject('GENAI_MODEL') private model: GenerativeModel,
+    @Inject('GENAI_MODEL') private model: GenerativeModel
   ) {}
 
   public async generateStory() {
@@ -27,7 +27,7 @@ export class StoryService {
       "At the end of the story, to succeed, the adventurer must fight an epic foe. Return its name.";*/
 
     const prompt = `generate a new and original story, the story should be in another biome than the following ones : ${this.previousBiomes.join(
-      ', ',
+      ', '
     )}`;
 
     console.log('Generating Story...');
@@ -42,7 +42,7 @@ export class StoryService {
 
     if (errors.length !== 0) {
       console.log(
-        'Something went wrong in this Story generation, skipping and logging errors...',
+        'Something went wrong in this Story generation, skipping and logging errors...'
       );
       throw new NoValidStoryException(errors);
     }

@@ -6,7 +6,7 @@ export class NoValidMonstersException extends HttpException {
   constructor() {
     super(
       'No valid monsters were generated. Try again',
-      HttpStatus.BAD_REQUEST,
+      HttpStatus.BAD_REQUEST
     );
   }
 }

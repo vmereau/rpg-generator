@@ -19,7 +19,7 @@ export function validateStoryProperties(story: Story): string[] {
     story.name.trim() === ''
   ) {
     errors.push(
-      "Invalid or missing 'name' property. Must be a non-empty string.",
+      "Invalid or missing 'name' property. Must be a non-empty string."
     );
   }
 
@@ -29,7 +29,7 @@ export function validateStoryProperties(story: Story): string[] {
     story.story_summary.trim() === ''
   ) {
     errors.push(
-      "Invalid or missing 'story_summary' property. Must be a non-empty string.",
+      "Invalid or missing 'story_summary' property. Must be a non-empty string."
     );
   }
 
@@ -39,7 +39,7 @@ export function validateStoryProperties(story: Story): string[] {
     story.biome.trim() === ''
   ) {
     errors.push(
-      "Invalid or missing 'biome' property. Must be a non-empty string.",
+      "Invalid or missing 'biome' property. Must be a non-empty string."
     );
   }
 
@@ -49,7 +49,7 @@ export function validateStoryProperties(story: Story): string[] {
     story.boss_name.trim() === ''
   ) {
     errors.push(
-      "Invalid or missing 'boss_name' property. Must be a non-empty string.",
+      "Invalid or missing 'boss_name' property. Must be a non-empty string."
     );
   }
 

@@ -25,8 +25,8 @@ export function validateShopProperties(shop: Shop): string[] {
       if (itemErrors.length > 0) {
         errors.push(
           ...itemErrors.map(
-            (error) => `Error in goods at index ${index}: ${error}`,
-          ),
+            error => `Error in goods at index ${index}: ${error}`
+          )
         );
       }
     });
