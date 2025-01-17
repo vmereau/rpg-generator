@@ -11,3 +11,10 @@ export class Character {
   skills: Skill[];
   picture?: string;
 }
+
+export enum CharacterUpdatableNumberProperties {
+  currentHealth = 'currentHealth',
+  currentMana = 'currentMana',
+  attack = 'attack',
+  defense = 'defense',
+}

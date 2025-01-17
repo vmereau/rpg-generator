@@ -1,3 +1,5 @@
+import {CharacterUpdatableNumberProperties} from "../core/character/character.class";
+
 export class Skill {
   name: string;
   description: string;
@@ -6,7 +8,7 @@ export class Skill {
 }
 
 export class SkillEffect {
-  targetProperty: SkillTargetPropertyEnum;
+  targetProperty: CharacterUpdatableNumberProperties;
   value: number;
   targetCharacter: SkillTargetCharacterEnum;
 }
@@ -14,11 +16,4 @@ export class SkillEffect {
 export enum SkillTargetCharacterEnum {
   self = 'self',
   enemy = 'enemy',
-}
-
-export enum SkillTargetPropertyEnum {
-  health = 'health',
-  mana = 'mana',
-  attack = 'attack',
-  defense = 'defense',
 }

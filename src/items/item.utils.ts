@@ -1,4 +1,5 @@
-import { Item, ItemEffect, ItemTargetPropertyEnum } from './item.class';
+import { Item, ItemEffect } from './item.class';
+import {CharacterUpdatableNumberProperties} from "../core/character/character.class";
 
 export function validateItemProperties(item: Item): string[] {
   const errors: string[] = [];
@@ -50,8 +51,8 @@ function validateItemEffects(effect: ItemEffect, index: number): string[] {
   if (
     !effect.targetProperty ||
     typeof effect.targetProperty !== 'string' ||
-    !Object.values(ItemTargetPropertyEnum).includes(
-      effect.targetProperty as ItemTargetPropertyEnum
+    !Object.values(CharacterUpdatableNumberProperties).includes(
+      effect.targetProperty as CharacterUpdatableNumberProperties
     )
   ) {
     errors.push(

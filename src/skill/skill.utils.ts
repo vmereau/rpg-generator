@@ -2,8 +2,8 @@ import {
   Skill,
   SkillEffect,
   SkillTargetCharacterEnum,
-  SkillTargetPropertyEnum,
 } from './skill.class';
+import {CharacterUpdatableNumberProperties} from "../core/character/character.class";
 
 /**
  * Validates a Skill object's properties.
@@ -71,8 +71,8 @@ function validateSkillEffect(effect: SkillEffect, index: number): string[] {
   if (
     !effect.targetProperty ||
     typeof effect.targetProperty !== 'string' ||
-    !Object.values(SkillTargetPropertyEnum).includes(
-      effect.targetProperty as SkillTargetPropertyEnum
+    !Object.values(CharacterUpdatableNumberProperties).includes(
+      effect.targetProperty as CharacterUpdatableNumberProperties
     )
   ) {
     errors.push(
