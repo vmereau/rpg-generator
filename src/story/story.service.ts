@@ -6,6 +6,7 @@ import { storySchema } from './story.schema';
 import { validateStoryProperties } from './story.utils';
 import { NoValidStoryException } from './story.errors';
 import { Story } from './story.class';
+import {GenerateStoryDto} from "./story.controller";
 
 @Injectable()
 export class StoryService {
@@ -19,16 +20,23 @@ export class StoryService {
     @Inject('GENAI_MODEL') private model: GenerativeModel
   ) {}
 
-  public async generateStory() {
+  public async generateStory(data: GenerateStoryDto) {
+
+    const premise: string = data.premise;
+
     /*let prompt =
       "generate a new and original story (different than the previous ones) with a name, a summary and a biome. " +
       "The story should be about an unnamed adventurer going somewhere to fight monsters and do something " +
       "like saving someone, finding a relic or just general exploration of uncharted lands" +
       "At the end of the story, to succeed, the adventurer must fight an epic foe. Return its name.";*/
 
-    const prompt = `generate a new and original story, the story should be in another biome than the following ones : ${this.previousBiomes.join(
+    let prompt = `generate a new and original story, the story should be in another biome than the following ones : ${this.previousBiomes.join(
       ', '
     )}`;
+
+    if(premise) {
+      prompt += `the user wants the story to be based around or include the following: ${premise}`;
+    }
 
     console.log('Generating Story...');
 
