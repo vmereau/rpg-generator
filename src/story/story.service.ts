@@ -6,7 +6,7 @@ import { storySchema } from './story.schema';
 import { validateStoryProperties } from './story.utils';
 import { NoValidStoryException } from './story.errors';
 import { Story } from './story.class';
-import {GenerateStoryDto} from "./story.controller";
+import { GenerateStoryDto } from './story.controller';
 
 @Injectable()
 export class StoryService {
@@ -21,7 +21,6 @@ export class StoryService {
   ) {}
 
   public async generateStory(data: GenerateStoryDto) {
-
     const premise: string = data.premise;
 
     /*let prompt =
@@ -34,7 +33,7 @@ export class StoryService {
       ', '
     )}`;
 
-    if(premise) {
+    if (premise) {
       prompt += `the user wants the story to be based around or include the following: ${premise}`;
     }
 

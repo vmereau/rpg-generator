@@ -1,5 +1,5 @@
 import { Item, ItemEffect } from './item.class';
-import {CharacterUpdatableNumberProperties} from "../core/character/character.class";
+import { CharacterUpdatableNumberProperties } from '../core/character/character.class';
 
 export function validateItemProperties(item: Item): string[] {
   const errors: string[] = [];

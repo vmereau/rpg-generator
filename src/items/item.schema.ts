@@ -1,6 +1,6 @@
 import { ResponseSchema, SchemaType } from '@google/generative-ai';
 import { ItemTypeEnum } from './item.class';
-import {CharacterUpdatableNumberProperties} from "../core/character/character.class";
+import { CharacterUpdatableNumberProperties } from '../core/character/character.class';
 
 export const itemSchema: ResponseSchema = {
   description: 'Complete schema of the generated Item',

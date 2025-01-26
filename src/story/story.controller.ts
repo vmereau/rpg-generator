@@ -1,11 +1,10 @@
-import {Body, Controller, Post} from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { StoryService } from './story.service';
 import { Story } from './story.class';
 
 export class GenerateStoryDto {
   premise?: string;
 }
-
 
 @Controller()
 export class StoryController {

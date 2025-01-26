@@ -1,4 +1,4 @@
-import {CharacterUpdatableNumberProperties} from "../core/character/character.class";
+import { CharacterUpdatableNumberProperties } from '../core/character/character.class';
 
 export class Skill {
   name: string;

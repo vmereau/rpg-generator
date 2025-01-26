@@ -1,9 +1,5 @@
-import {
-  Skill,
-  SkillEffect,
-  SkillTargetCharacterEnum,
-} from './skill.class';
-import {CharacterUpdatableNumberProperties} from "../core/character/character.class";
+import { Skill, SkillEffect, SkillTargetCharacterEnum } from './skill.class';
+import { CharacterUpdatableNumberProperties } from '../core/character/character.class';
 
 /**
  * Validates a Skill object's properties.
