@@ -29,7 +29,7 @@ export class StoryService {
       "like saving someone, finding a relic or just general exploration of uncharted lands" +
       "At the end of the story, to succeed, the adventurer must fight an epic foe. Return its name.";*/
 
-    let prompt = `generate a new and original story, the story should be in another biome than the following ones : ${this.previousBiomes.join(
+    let prompt = `generate a new and original story with a boss to defeat, the story should be in another biome than the following ones : ${this.previousBiomes.join(
       ', '
     )}`;
 
