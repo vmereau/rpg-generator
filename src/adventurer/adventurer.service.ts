@@ -6,6 +6,8 @@ import { adventurerSchema } from './adventurer.schema';
 import { validateCharacterProperties } from '../core/character/character.utils';
 import { CharacterNotValidException } from '../core/character/character.errors';
 import { Adventurer } from './adventurer.class';
+import { GenerateStoryDto } from '../story/story.controller';
+import { GenerateAdventurerDto } from './adventurer.controller';
 
 @Injectable()
 export class AdventurerService {
@@ -19,8 +21,8 @@ export class AdventurerService {
     @Inject('GENAI_MODEL') private model: GenerativeModel
   ) {}
 
-  public async generateAdventurer() {
-    const prompt =
+  public async generateAdventurer(data: GenerateAdventurerDto) {
+    let prompt =
       'generate a level 1 adventurer ' +
       'with a short original description that should include some kind of archetype and a backstory ' +
       // "his health, attack and mana properties should reflect his archetype " +
@@ -35,6 +37,10 @@ export class AdventurerService {
       `the archetype should be different than the following ones: ${this.previousArchetypes.join(
         ', '
       )}`;
+
+    if (data.additionalGenerationInfos) {
+      prompt += `the user wants the adventurer to be about ${data.additionalGenerationInfos}`;
+    }
 
     console.log('Generating Adventurer...');
 
