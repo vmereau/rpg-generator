@@ -3,9 +3,10 @@ import { ShopService } from './shop.service';
 import { Shop } from './shop.class';
 
 export class GenerateShopDto {
-  level = 1;
-  numberOfItems = 3;
-  adventurerArchetype = 'warrior';
+  level: number = 1;
+  numberOfItems: number = 3;
+  adventurerArchetype: string = 'warrior';
+  biome?: string;
 }
 
 @Controller()

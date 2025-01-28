@@ -17,10 +17,14 @@ export class ShopService {
   ) {}
 
   public async generateShop(data: GenerateShopDto) {
-    const prompt =
+    let prompt =
       `generate a shop of ${data.numberOfItems} level ${data.level} items, ` +
       `the items should be fit for the following adventurer archetype: ${data.adventurerArchetype} and have one or multiple effects` +
       'add a short description for the shop keeper';
+
+    if (data.biome) {
+      prompt += ` the shop should fit in the following biome: ${data.biome}`;
+    }
 
     console.log('Generating shop...');
 
