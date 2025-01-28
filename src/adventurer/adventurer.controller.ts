@@ -1,7 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { AdventurerService } from './adventurer.service';
 import { Adventurer } from './adventurer.class';
-import { GenerateStoryDto } from '../story/story.controller';
 
 export class GenerateAdventurerDto {
   additionalGenerationInfos?: string;

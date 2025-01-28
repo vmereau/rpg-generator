@@ -1,5 +1,6 @@
 import { Adventurer } from '../../adventurer/adventurer.class';
 import { Character } from './character.class';
+import { Monster } from '../../monster/monster.class';
 
 export function validateCharacterProperties(
   character: Character | Adventurer
@@ -60,6 +61,14 @@ export function validateCharacterProperties(
       errors.push('Character description is missing or empty.');
     } else if (typeof character.archetype !== 'string') {
       errors.push('Character description has to be a string');
+    }
+  }
+
+  if (character instanceof Monster) {
+    if (!character.experienceGiven) {
+      errors.push('Monster experience given is missing or empty.');
+    } else if (typeof character.experienceGiven !== 'number') {
+      errors.push('Monster experience given has to be a number');
     }
   }
 

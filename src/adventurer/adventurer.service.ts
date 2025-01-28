@@ -6,7 +6,6 @@ import { adventurerSchema } from './adventurer.schema';
 import { validateCharacterProperties } from '../core/character/character.utils';
 import { CharacterNotValidException } from '../core/character/character.errors';
 import { Adventurer } from './adventurer.class';
-import { GenerateStoryDto } from '../story/story.controller';
 import { GenerateAdventurerDto } from './adventurer.controller';
 
 @Injectable()

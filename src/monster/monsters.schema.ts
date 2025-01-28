@@ -26,6 +26,12 @@ export const monstersSchema: ResponseSchema = {
         description: 'The level of the monster',
         nullable: false,
       },
+      experienceGiven: {
+        type: SchemaType.INTEGER,
+        description:
+          'Experience given when the monster is slain, relative to its level',
+        nullable: false,
+      },
       description: {
         type: SchemaType.STRING,
         description: 'The visual description of the monster',

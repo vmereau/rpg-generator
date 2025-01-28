@@ -18,8 +18,6 @@ export enum MonsterLevelDescription {
 
 @Injectable()
 export class MonstersService {
-  private generatedMonsters: Monster[] = [];
-
   constructor(
     private configService: ConfigService,
     private httpsService: HttpService,
@@ -33,6 +31,7 @@ export class MonstersService {
       'attack being 1 plus a random number between 1 and 4 multiplied by their level,' +
       'mana being 1 plus a random number between 1 and 4 multiplied by their level,' +
       'defense being 1 plus a random number between 1 and 4 multiplied by their level,' +
+      'experienceGiven being a random number between 5 and 10 multiplied by their level,' +
       `based on a ${data.biome} environment, ` +
       `its name and short description should feel like  ${
         MonsterLevelDescription['level_' + data.level]
@@ -110,8 +109,6 @@ export class MonstersService {
         monster.picture = response.data.output[0];
       }
     }
-
-    this.generatedMonsters.push(...monsters);
 
     return monsters;
   }
