@@ -32,6 +32,12 @@ export const monstersSchema: ResponseSchema = {
           'Experience given when the monster is slain, relative to its level',
         nullable: false,
       },
+      goldGiven: {
+        type: SchemaType.INTEGER,
+        description:
+          'Gold given when the monster is slain, relative to its level',
+        nullable: false,
+      },
       description: {
         type: SchemaType.STRING,
         description: 'The visual description of the monster',

@@ -32,6 +32,7 @@ export class MonstersService {
       'mana being 1 plus a random number between 1 and 4 multiplied by their level,' +
       'defense being 1 plus a random number between 1 and 4 multiplied by their level,' +
       'experienceGiven being a random number between 5 and 10 multiplied by their level,' +
+      'goldGiven being a random number between 10 and 20 multiplied by their level,' +
       `based on a ${data.biome} environment, ` +
       `its name and short description should feel like  ${
         MonsterLevelDescription['level_' + data.level]

@@ -70,6 +70,12 @@ export function validateCharacterProperties(
     } else if (typeof character.experienceGiven !== 'number') {
       errors.push('Monster experience given has to be a number');
     }
+
+    if (!character.goldGiven) {
+      errors.push('Monster gold given is missing or empty.');
+    } else if (typeof character.goldGiven !== 'number') {
+      errors.push('Monster gold given has to be a number');
+    }
   }
 
   return errors;

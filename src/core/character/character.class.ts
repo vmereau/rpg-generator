@@ -17,4 +17,6 @@ export enum CharacterUpdatableNumberProperties {
   currentMana = 'currentMana',
   attack = 'attack',
   defense = 'defense',
+  health = 'health',
+  mana = 'mana',
 }
