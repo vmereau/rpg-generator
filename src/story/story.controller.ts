@@ -14,4 +14,9 @@ export class StoryController {
   generateStory(@Body() body: GenerateStoryDto): Promise<Story> {
     return this.storyService.generateStory(body);
   }
+
+  @Post('generate-img')
+  generateSToryImg() {
+    return this.storyService.generateStoryImg();
+  }
 }

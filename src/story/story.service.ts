@@ -1,12 +1,15 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config/dist';
-import { GenerativeModel } from '@google/generative-ai';
-import { HttpService } from '@nestjs/axios';
-import { storySchema } from './story.schema';
-import { validateStoryProperties } from './story.utils';
-import { NoValidStoryException } from './story.errors';
-import { Story } from './story.class';
-import { GenerateStoryDto } from './story.controller';
+import {Inject, Injectable} from '@nestjs/common';
+import {ConfigService} from '@nestjs/config/dist';
+import {GenerativeModel} from '@google/generative-ai';
+import {HttpService} from '@nestjs/axios';
+import {storySchema} from './story.schema';
+import {validateStoryProperties} from './story.utils';
+import {NoValidStoryException} from './story.errors';
+import {Story} from './story.class';
+import {GenerateStoryDto} from './story.controller';
+import {GENAITOKENS} from "../global.module";
+import {GoogleGenAI} from "@google/genai";
+const fs = require("fs");
 
 @Injectable()
 export class StoryService {
@@ -17,7 +20,8 @@ export class StoryService {
   constructor(
     private configService: ConfigService,
     private httpsService: HttpService,
-    @Inject('GENAI_MODEL') private model: GenerativeModel
+    @Inject(GENAITOKENS.TEXT) private textModel: GenerativeModel,
+    @Inject(GENAITOKENS.IMG) private imgModel: GoogleGenAI
   ) {}
 
   public async generateStory(data: GenerateStoryDto) {
@@ -39,9 +43,9 @@ export class StoryService {
 
     console.log('Generating Story...');
 
-    this.model.generationConfig.responseMimeType = 'application/json';
-    this.model.generationConfig.responseSchema = storySchema;
-    const result = await this.model.generateContent(prompt);
+    this.textModel.generationConfig.responseMimeType = 'application/json';
+    this.textModel.generationConfig.responseSchema = storySchema;
+    const result = await this.textModel.generateContent(prompt);
     const generatedStory: Story = JSON.parse(result.response.text());
     console.log('story generated and parsed, checking integrity ...');
 
@@ -60,6 +64,28 @@ export class StoryService {
     this.addToPreviousBiomes(this.generatedStory.biome);
 
     return generatedStory;
+  }
+
+  public async generateStoryImg(story?: Story) {
+    const response = await this.imgModel.models.generateContent({
+      model: 'gemini-2.0-flash-exp-image-generation',
+      contents: 'a sword',
+      config: {
+        responseModalities: ['Text', 'Image']
+      },
+    });
+
+    for (const part of response.candidates[0].content.parts) {
+      // Based on the part type, either show the text or save the image
+      if (part.text) {
+        console.log(part.text);
+      } else if (part.inlineData) {
+        const imageData = part.inlineData.data;
+        const buffer = Buffer.from(imageData, 'base64');
+        fs.writeFileSync('gemini-native-image.png', buffer);
+        console.log('Image saved as gemini-native-image.png');
+      }
+    }
   }
 
   private addToPreviousBiomes(biome: string): void {
