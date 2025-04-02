@@ -6,6 +6,7 @@ export class GenerateStoryDto {
   premise?: string;
 }
 
+
 @Controller()
 export class StoryController {
   constructor(private readonly storyService: StoryService) {}
@@ -16,7 +17,7 @@ export class StoryController {
   }
 
   @Post('generate-img')
-  generateSToryImg() {
-    return this.storyService.generateStoryImg();
+  generateSToryImg(@Body() body: Story) {
+    return this.storyService.generateStoryImg(body);
   }
 }
