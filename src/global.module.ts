@@ -2,6 +2,7 @@ import {Global, Module} from '@nestjs/common';
 import {ConfigModule, ConfigService} from '@nestjs/config/dist';
 import {GoogleGenerativeAI} from '@google/generative-ai';
 import {GoogleGenAI} from "@google/genai";
+import {IaGenerationService} from "./shared/ia-generation.service";
 
 export enum GENAITOKENS {
   TEXT =  'GENAI_MODEL',
@@ -30,7 +31,8 @@ export enum GENAITOKENS {
         return new GoogleGenAI({apiKey: apiKey});
       },
     },
+    IaGenerationService
   ],
-  exports: [GENAITOKENS.TEXT, GENAITOKENS.IMG],
+  exports: [GENAITOKENS.TEXT, GENAITOKENS.IMG, IaGenerationService],
 })
 export class GlobalModule {}

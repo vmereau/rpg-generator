@@ -8,7 +8,8 @@ import {NoValidStoryException} from './story.errors';
 import {Story} from './story.class';
 import {GenerateStoryDto} from './story.controller';
 import {GENAITOKENS} from "../global.module";
-import {GoogleGenAI} from "@google/genai";
+import {IaGenerationService} from "../shared/ia-generation.service";
+
 const fs = require("fs");
 
 @Injectable()
@@ -20,8 +21,8 @@ export class StoryService {
   constructor(
     private configService: ConfigService,
     private httpsService: HttpService,
+    private iaGenerationService: IaGenerationService,
     @Inject(GENAITOKENS.TEXT) private textModel: GenerativeModel,
-    @Inject(GENAITOKENS.IMG) private imgModel: GoogleGenAI
   ) {}
 
   public async generateStory(data: GenerateStoryDto) {
@@ -67,13 +68,17 @@ export class StoryService {
   }
 
   public async generateStoryImg(story?: Story) {
-    const response = await this.imgModel.models.generateContent({
-      model: 'gemini-2.0-flash-exp-image-generation',
-      contents: 'a sword',
-      config: {
-        responseModalities: ['Text', 'Image']
-      },
-    });
+    /*const prompt = `Generate an image for the following story, ${story.name}, set in the ${story.biome} biome,
+    with the following premise: ${story.story_summary}`;*/
+
+    const prompt = `Generate an image for the following story: '${story.name}', set in the following biome: '${story.biome}'`;
+
+    console.log(prompt);
+
+
+    return await this.iaGenerationService.generateImg(prompt);
+
+    /*const response = await this.iaGenerationService.generateImg(prompt);
 
     for (const part of response.candidates[0].content.parts) {
       // Based on the part type, either show the text or save the image
@@ -85,7 +90,7 @@ export class StoryService {
         fs.writeFileSync('gemini-native-image.png', buffer);
         console.log('Image saved as gemini-native-image.png');
       }
-    }
+    }*/
   }
 
   private addToPreviousBiomes(biome: string): void {
