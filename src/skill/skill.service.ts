@@ -1,12 +1,12 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config/dist';
-import { GenerativeModel } from '@google/generative-ai';
 import { HttpService } from '@nestjs/axios';
 import { skillSchema } from './skill.schema';
 import { GenerateSkillDto } from './skill.controller';
 import { Skill } from './skill.class';
 import { validateSkillProperties } from './skill.utils';
 import { NoValidSkillException } from './skill.errors';
+import {IaGenerationService} from "../shared/ia-generation.service";
 
 @Injectable()
 export class SkillService {
@@ -15,7 +15,7 @@ export class SkillService {
   constructor(
     private configService: ConfigService,
     private httpsService: HttpService,
-    @Inject('GENAI_MODEL') private model: GenerativeModel
+    private iaGenerationService: IaGenerationService
   ) {}
 
   public async generateSkill(data: GenerateSkillDto) {
@@ -27,10 +27,7 @@ export class SkillService {
       'the generated skill should be different than the previous one';
 
     console.log('Generating Skill ...');
-
-    this.model.generationConfig.responseMimeType = 'application/json';
-    this.model.generationConfig.responseSchema = skillSchema;
-    const result = await this.model.generateContent(prompt);
+    const result = await this.iaGenerationService.generateText(prompt, skillSchema);
     const generatedSkill: Skill = JSON.parse(result.response.text());
 
     console.log('Skill generated and parsed, checking integrity ...');

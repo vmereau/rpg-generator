@@ -1,12 +1,12 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config/dist';
-import { GenerativeModel } from '@google/generative-ai';
 import { HttpService } from '@nestjs/axios';
 import { adventurerSchema } from './adventurer.schema';
 import { validateCharacterProperties } from '../core/character/character.utils';
 import { CharacterNotValidException } from '../core/character/character.errors';
 import { Adventurer } from './adventurer.class';
 import { GenerateAdventurerDto } from './adventurer.controller';
+import {IaGenerationService} from "../shared/ia-generation.service";
 
 @Injectable()
 export class AdventurerService {
@@ -17,7 +17,7 @@ export class AdventurerService {
   constructor(
     private configService: ConfigService,
     private httpsService: HttpService,
-    @Inject('GENAI_MODEL') private model: GenerativeModel
+    private iaGenerationService: IaGenerationService
   ) {}
 
   public async generateAdventurer(data: GenerateAdventurerDto) {
@@ -43,9 +43,7 @@ export class AdventurerService {
 
     console.log('Generating Adventurer...');
 
-    this.model.generationConfig.responseMimeType = 'application/json';
-    this.model.generationConfig.responseSchema = adventurerSchema;
-    const result = await this.model.generateContent(prompt);
+    const result = await this.iaGenerationService.generateText(prompt, adventurerSchema);
     const generatedAdventurer: Adventurer = JSON.parse(result.response.text());
 
     console.log('adventurers generated and parsed, checking integrity ...');

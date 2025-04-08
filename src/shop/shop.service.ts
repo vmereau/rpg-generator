@@ -7,13 +7,14 @@ import { shopSchema } from './shop.schema';
 import { validateShopProperties } from './shop.utils';
 import { NoValidShopException } from './shop.errors';
 import { Shop } from './shop.class';
+import {IaGenerationService} from "../shared/ia-generation.service";
 
 @Injectable()
 export class ShopService {
   constructor(
     private configService: ConfigService,
     private httpsService: HttpService,
-    @Inject('GENAI_MODEL') private model: GenerativeModel
+    private iaGenerationService: IaGenerationService
   ) {}
 
   public async generateShop(data: GenerateShopDto) {
@@ -27,10 +28,7 @@ export class ShopService {
     }
 
     console.log('Generating shop...');
-
-    this.model.generationConfig.responseMimeType = 'application/json';
-    this.model.generationConfig.responseSchema = shopSchema;
-    const result = await this.model.generateContent(prompt);
+    const result = await this.iaGenerationService.generateText(prompt, shopSchema);
     const generatedShop: Shop = JSON.parse(result.response.text());
     console.log('shop generated and parsed, checking integrity ...');
 

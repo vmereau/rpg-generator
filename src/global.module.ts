@@ -4,17 +4,12 @@ import {GoogleGenerativeAI} from '@google/generative-ai';
 import {GoogleGenAI} from "@google/genai";
 import {IaGenerationService} from "./shared/ia-generation.service";
 
-export enum GENAITOKENS {
-  TEXT =  'GENAI_MODEL',
-  IMG = 'GENAI_IMG_MODEL'
-}
-
 @Global()
 @Module({
   imports: [ConfigModule],
   providers: [
     {
-      provide: GENAITOKENS.TEXT,
+      provide: 'GENAI_MODEL',
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
         const apiKey = configService.get('GEMINI_API_KEY');
@@ -23,7 +18,7 @@ export enum GENAITOKENS {
       },
     },
     {
-      provide: GENAITOKENS.IMG,
+      provide: 'GENAI_IMG_MODEL',
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
         const apiKey = configService.get('GEMINI_API_KEY');
@@ -33,6 +28,6 @@ export enum GENAITOKENS {
     },
     IaGenerationService
   ],
-  exports: [GENAITOKENS.TEXT, GENAITOKENS.IMG, IaGenerationService],
+  exports: [IaGenerationService],
 })
 export class GlobalModule {}

@@ -1,19 +1,19 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config/dist';
-import { GenerativeModel } from '@google/generative-ai';
 import { HttpService } from '@nestjs/axios';
 import { Choice } from './choice.class';
 import { choiceSchema } from './choice.schema';
 import { GenerateChoicesDto } from './choice.controller';
 import { validateChoicesProperties } from './choice.utils';
 import { NoValidChoice } from './choice.error';
+import {IaGenerationService} from "../shared/ia-generation.service";
 
 @Injectable()
 export class ChoiceService {
   constructor(
     private configService: ConfigService,
     private httpsService: HttpService,
-    @Inject('GENAI_MODEL') private model: GenerativeModel
+    private iaGenerationService: IaGenerationService
   ) {}
 
   public async generateChoices(data: GenerateChoicesDto): Promise<Choice[]> {
@@ -25,9 +25,7 @@ export class ChoiceService {
 
     console.log('Generating Choices...');
 
-    this.model.generationConfig.responseMimeType = 'application/json';
-    this.model.generationConfig.responseSchema = choiceSchema;
-    const result = await this.model.generateContent(prompt);
+    const result = await this.iaGenerationService.generateText(prompt, choiceSchema);
     const generatedChoices: Choice[] = JSON.parse(result.response.text());
 
     console.log('choices generated and parsed, checking integrity ...');

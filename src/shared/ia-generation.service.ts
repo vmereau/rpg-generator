@@ -1,10 +1,12 @@
-import {Global, Inject, Injectable} from '@nestjs/common';
+import {Inject, Injectable} from '@nestjs/common';
 import {GoogleGenAI} from "@google/genai";
+import {GenerativeModel, ResponseSchema} from "@google/generative-ai";
 
 @Injectable()
 export class IaGenerationService {
 
-  constructor(@Inject('GENAI_IMG_MODEL') private imgModel: GoogleGenAI) {}
+  constructor(@Inject('GENAI_IMG_MODEL') private imgModel: GoogleGenAI,
+              @Inject('GENAI_MODEL') private textModel: GenerativeModel,) {}
 
   public async generateImg(prompt: string) {
     return await this.imgModel.models.generateContent({
@@ -14,17 +16,12 @@ export class IaGenerationService {
         responseModalities: ['Text', 'Image']
       },
     });
+  }
 
-    /*for (const part of response.candidates[0].content.parts) {
-      // Based on the part type, either show the text or save the image
-      if (part.text) {
-        console.log(part.text);
-      } else if (part.inlineData) {
-        const imageData = part.inlineData.data;
-        const buffer = Buffer.from(imageData, 'base64');
-        fs.writeFileSync('gemini-native-image.png', buffer);
-        console.log('Image saved as gemini-native-image.png');
-      }
-    }*/
+  public async generateText(prompt: string, schema: ResponseSchema) {
+    this.textModel.generationConfig.responseMimeType = 'application/json';
+    this.textModel.generationConfig.responseSchema = schema;
+
+    return await this.textModel.generateContent(prompt);
   }
 }

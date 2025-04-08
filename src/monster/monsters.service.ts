@@ -1,6 +1,5 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config/dist';
-import { GenerativeModel } from '@google/generative-ai';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 import { NoValidMonstersException } from './monsters.errors';
@@ -8,6 +7,7 @@ import { monstersSchema } from './Monsters.schema';
 import { GenerateMonstersDto } from './monsters.controller';
 import { validateCharacterProperties } from '../core/character/character.utils';
 import { Monster } from './monster.class';
+import {IaGenerationService} from "../shared/ia-generation.service";
 
 export enum MonsterLevelDescription {
   level_1 = 'a weak monster',
@@ -21,7 +21,7 @@ export class MonstersService {
   constructor(
     private configService: ConfigService,
     private httpsService: HttpService,
-    @Inject('GENAI_MODEL') private model: GenerativeModel
+    private iaGenerationService: IaGenerationService
   ) {}
 
   public async generateMonsters(data: GenerateMonstersDto) {
@@ -42,9 +42,7 @@ export class MonstersService {
 
     console.log('Generating monsters...');
 
-    this.model.generationConfig.responseMimeType = 'application/json';
-    this.model.generationConfig.responseSchema = monstersSchema;
-    const result = await this.model.generateContent(prompt);
+    const result = await this.iaGenerationService.generateText(prompt, monstersSchema);
     const monsterJSONArray: Monster[] = JSON.parse(result.response.text());
     console.log('monsters generated and parsed, checking integrity ...');
 
