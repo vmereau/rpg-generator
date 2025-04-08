@@ -7,6 +7,7 @@ import { CharacterNotValidException } from '../core/character/character.errors';
 import { Adventurer } from './adventurer.class';
 import { GenerateAdventurerDto } from './adventurer.controller';
 import {IaGenerationService} from "../shared/ia-generation.service";
+import {Story} from "../story/story.class";
 
 @Injectable()
 export class AdventurerService {
@@ -52,30 +53,27 @@ export class AdventurerService {
 
     if (errors.length !== 0) {
       console.log(
-        'Something went wrong in this monster generation, logging errors...'
+        'Something went wrong in the adventurer generation, logging errors...'
       );
       throw new CharacterNotValidException(errors);
     }
 
     console.log('generated adventurer seems valid');
 
-    /*const openai = new OpenAI({
-      apiKey: this.configService.get("OPENAI_KEY"),
-    });
-
-    const response = await openai.images.generate({
-      model: "dall-e-3",
-      prompt: generatedAdventurer.description,
-      n: 1,
-      size: "1024x1024",
-    });
-
-    console.log(response.data[0].url);*/
-
     this.generatedAdventurer = generatedAdventurer;
     this.addToPreviousArchetypes(this.generatedAdventurer.archetype);
 
     return generatedAdventurer;
+  }
+
+  public async generateAdventurerImg(adventurer?: Adventurer) {
+    const prompt = `Generate an image for the following adventurer: '${adventurer.name}',
+      with the following archetype: '${adventurer.archetype}',
+      and the following description: ${adventurer.description}`;
+
+    console.log(prompt);
+
+    return await this.iaGenerationService.generateImg(prompt);
   }
 
   private addToPreviousArchetypes(archetype: string): void {
