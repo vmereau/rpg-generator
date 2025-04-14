@@ -1,53 +1,53 @@
-import { ResponseSchema, SchemaType } from '@google/generative-ai';
 import { ItemTypeEnum } from './item.class';
 import { CharacterUpdatableNumberProperties } from '../core/character/character.class';
+import { SchemaUnion, Type } from '@google/genai';
 
-export const itemSchema: ResponseSchema = {
+export const itemSchema: SchemaUnion = {
   description: 'Complete schema of the generated Item',
-  type: SchemaType.OBJECT,
+  type: Type.OBJECT,
   properties: {
     name: {
-      type: SchemaType.STRING,
+      type: Type.STRING,
       description: 'Name of the item',
       nullable: false,
     },
     cost: {
-      type: SchemaType.INTEGER,
+      type: Type.INTEGER,
       description: 'The cost of the item',
       nullable: false,
     },
     level: {
-      type: SchemaType.INTEGER,
+      type: Type.INTEGER,
       description: 'The level of the item',
       nullable: false,
     },
     description: {
-      type: SchemaType.STRING,
+      type: Type.STRING,
       description: 'Short description of the item',
       nullable: false,
     },
     type: {
-      type: SchemaType.STRING,
+      type: Type.STRING,
       description: 'The type of the item',
       nullable: false,
       enum: Object.values(ItemTypeEnum),
     },
     effects: {
-      type: SchemaType.ARRAY,
+      type: Type.ARRAY,
       description: 'The effects of the item',
       nullable: false,
       items: {
-        type: SchemaType.OBJECT,
+        type: Type.OBJECT,
         nullable: false,
         properties: {
           targetProperty: {
-            type: SchemaType.STRING,
+            type: Type.STRING,
             description: 'the targeted property of this effect',
             nullable: false,
             enum: Object.values(CharacterUpdatableNumberProperties),
           },
           value: {
-            type: SchemaType.INTEGER,
+            type: Type.INTEGER,
             description: 'The value of the effect, negative or positive',
             nullable: false,
           },

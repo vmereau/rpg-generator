@@ -6,7 +6,7 @@ import { choiceSchema } from './choice.schema';
 import { GenerateChoicesDto } from './choice.controller';
 import { validateChoicesProperties } from './choice.utils';
 import { NoValidChoice } from './choice.error';
-import {IaGenerationService} from "../shared/ia-generation.service";
+import { IaGenerationService } from '../shared/ia-generation.service';
 
 @Injectable()
 export class ChoiceService {
@@ -25,8 +25,11 @@ export class ChoiceService {
 
     console.log('Generating Choices...');
 
-    const result = await this.iaGenerationService.generateText(prompt, choiceSchema);
-    const generatedChoices: Choice[] = JSON.parse(result.response.text());
+    const result = await this.iaGenerationService.generateTextV2(
+      prompt,
+      choiceSchema
+    );
+    const generatedChoices: Choice[] = JSON.parse(result.text);
 
     console.log('choices generated and parsed, checking integrity ...');
 

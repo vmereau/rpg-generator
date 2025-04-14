@@ -1,46 +1,46 @@
-import { ResponseSchema, SchemaType } from '@google/generative-ai';
+import { SchemaUnion, Type } from '@google/genai';
 
-export const adventurerSchema: ResponseSchema = {
+export const adventurerSchema: SchemaUnion = {
   description: 'Complete schema of the generated adventurer',
-  type: SchemaType.OBJECT,
+  type: Type.OBJECT,
   properties: {
     name: {
-      type: SchemaType.STRING,
+      type: Type.STRING,
       description: 'Name of the adventurer',
       nullable: false,
     },
     health: {
-      type: SchemaType.INTEGER,
+      type: Type.INTEGER,
       description: 'Health points of the adventurer',
       nullable: false,
     },
     attack: {
-      type: SchemaType.INTEGER,
+      type: Type.INTEGER,
       description: 'Attack of the adventurer',
       nullable: false,
     },
     level: {
-      type: SchemaType.INTEGER,
+      type: Type.INTEGER,
       description: 'The level of the adventurer',
       nullable: false,
     },
     description: {
-      type: SchemaType.STRING,
+      type: Type.STRING,
       description: 'The visual description of the adventurer',
       nullable: false,
     },
     mana: {
-      type: SchemaType.INTEGER,
+      type: Type.INTEGER,
       description: 'Mana points of the adventurer',
       nullable: false,
     },
     defense: {
-      type: SchemaType.INTEGER,
+      type: Type.INTEGER,
       description: 'Defense of the adventurer',
       nullable: false,
     },
     archetype: {
-      type: SchemaType.STRING,
+      type: Type.STRING,
       description: 'The archetype of the adventurer',
       nullable: false,
     },

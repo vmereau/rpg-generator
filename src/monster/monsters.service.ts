@@ -1,13 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config/dist';
 import { HttpService } from '@nestjs/axios';
-import { firstValueFrom } from 'rxjs';
 import { NoValidMonstersException } from './monsters.errors';
 import { monstersSchema } from './Monsters.schema';
 import { GenerateMonstersDto } from './monsters.controller';
 import { validateCharacterProperties } from '../core/character/character.utils';
 import { Monster } from './monster.class';
-import {IaGenerationService} from "../shared/ia-generation.service";
+import { IaGenerationService } from '../shared/ia-generation.service';
 
 export enum MonsterLevelDescription {
   level_1 = 'a weak monster',
@@ -42,8 +41,11 @@ export class MonstersService {
 
     console.log('Generating monsters...');
 
-    const result = await this.iaGenerationService.generateText(prompt, monstersSchema);
-    const monsterJSONArray: Monster[] = JSON.parse(result.response.text());
+    const result = await this.iaGenerationService.generateTextV2(
+      prompt,
+      monstersSchema
+    );
+    const monsterJSONArray: Monster[] = JSON.parse(result.text);
     console.log('monsters generated and parsed, checking integrity ...');
 
     const monsters = [];
@@ -66,48 +68,6 @@ export class MonstersService {
     }
 
     console.log('generated monsters seems valid');
-
-    if (data.withPictures) {
-      for (const monster of monsters) {
-        console.log(
-          'Generating picture for monster: ' +
-            monster.name +
-            ' with description: ' +
-            monster.description
-        );
-        const body = {
-          key: this.configService.get('STABLE_DIFFUSION_API_KEY'),
-          prompt:
-            'generate a creature, its name is: ' +
-            monster.name +
-            ', should look like: ' +
-            monster.description +
-            ' with a background of ' +
-            data.biome,
-          samples: '1',
-        };
-
-        const response = await firstValueFrom(
-          this.httpsService.post(
-            'https://stablediffusionapi.com/api/v3/text2img',
-            body,
-            {
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            }
-          )
-        );
-
-        if (response.data.status === 'error') {
-          console.log('monster picture not generated / saved, api error: ');
-          console.log(response.data.message);
-          continue;
-        }
-
-        monster.picture = response.data.output[0];
-      }
-    }
 
     return monsters;
   }

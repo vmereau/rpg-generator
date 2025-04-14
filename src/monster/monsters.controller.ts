@@ -5,7 +5,6 @@ export class GenerateMonstersDto {
   number = 1;
   level = 1;
   biome = 'forest';
-  withPictures?: boolean = false;
 }
 
 @Controller()

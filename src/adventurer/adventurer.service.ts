@@ -6,8 +6,7 @@ import { validateCharacterProperties } from '../core/character/character.utils';
 import { CharacterNotValidException } from '../core/character/character.errors';
 import { Adventurer } from './adventurer.class';
 import { GenerateAdventurerDto } from './adventurer.controller';
-import {IaGenerationService} from "../shared/ia-generation.service";
-import {Story} from "../story/story.class";
+import { IaGenerationService } from '../shared/ia-generation.service';
 
 @Injectable()
 export class AdventurerService {
@@ -44,8 +43,11 @@ export class AdventurerService {
 
     console.log('Generating Adventurer...');
 
-    const result = await this.iaGenerationService.generateText(prompt, adventurerSchema);
-    const generatedAdventurer: Adventurer = JSON.parse(result.response.text());
+    const result = await this.iaGenerationService.generateTextV2(
+      prompt,
+      adventurerSchema
+    );
+    const generatedAdventurer: Adventurer = JSON.parse(result.text);
 
     console.log('adventurers generated and parsed, checking integrity ...');
 

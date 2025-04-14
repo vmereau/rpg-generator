@@ -6,7 +6,7 @@ import { GenerateSkillDto } from './skill.controller';
 import { Skill } from './skill.class';
 import { validateSkillProperties } from './skill.utils';
 import { NoValidSkillException } from './skill.errors';
-import {IaGenerationService} from "../shared/ia-generation.service";
+import { IaGenerationService } from '../shared/ia-generation.service';
 
 @Injectable()
 export class SkillService {
@@ -27,8 +27,11 @@ export class SkillService {
       'the generated skill should be different than the previous one';
 
     console.log('Generating Skill ...');
-    const result = await this.iaGenerationService.generateText(prompt, skillSchema);
-    const generatedSkill: Skill = JSON.parse(result.response.text());
+    const result = await this.iaGenerationService.generateTextV2(
+      prompt,
+      skillSchema
+    );
+    const generatedSkill: Skill = JSON.parse(result.text);
 
     console.log('Skill generated and parsed, checking integrity ...');
 

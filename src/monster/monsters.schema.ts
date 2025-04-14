@@ -1,55 +1,55 @@
-import { ResponseSchema, SchemaType } from '@google/generative-ai';
+import { SchemaUnion, Type } from '@google/genai';
 
-export const monstersSchema: ResponseSchema = {
+export const monstersSchema: SchemaUnion = {
   description: 'Complete schema of the generated monster list',
-  type: SchemaType.ARRAY,
+  type: Type.ARRAY,
   items: {
-    type: SchemaType.OBJECT,
+    type: Type.OBJECT,
     properties: {
       name: {
-        type: SchemaType.STRING,
+        type: Type.STRING,
         description: 'Name of the monster',
         nullable: false,
       },
       health: {
-        type: SchemaType.INTEGER,
+        type: Type.INTEGER,
         description: 'Health points of the monster',
         nullable: false,
       },
       attack: {
-        type: SchemaType.INTEGER,
+        type: Type.INTEGER,
         description: 'Attack of the monster',
         nullable: false,
       },
       level: {
-        type: SchemaType.INTEGER,
+        type: Type.INTEGER,
         description: 'The level of the monster',
         nullable: false,
       },
       experienceGiven: {
-        type: SchemaType.INTEGER,
+        type: Type.INTEGER,
         description:
           'Experience given when the monster is slain, relative to its level',
         nullable: false,
       },
       goldGiven: {
-        type: SchemaType.INTEGER,
+        type: Type.INTEGER,
         description:
           'Gold given when the monster is slain, relative to its level',
         nullable: false,
       },
       description: {
-        type: SchemaType.STRING,
+        type: Type.STRING,
         description: 'The visual description of the monster',
         nullable: true,
       },
       mana: {
-        type: SchemaType.INTEGER,
+        type: Type.INTEGER,
         description: 'Mana points of the monster',
         nullable: true,
       },
       defense: {
-        type: SchemaType.INTEGER,
+        type: Type.INTEGER,
         description: 'Defense of the monster',
         nullable: true,
       },

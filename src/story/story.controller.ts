@@ -6,7 +6,6 @@ export class GenerateStoryDto {
   premise?: string;
 }
 
-
 @Controller()
 export class StoryController {
   constructor(private readonly storyService: StoryService) {}

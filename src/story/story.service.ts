@@ -1,12 +1,12 @@
-import {Injectable} from '@nestjs/common';
-import {ConfigService} from '@nestjs/config/dist';
-import {HttpService} from '@nestjs/axios';
-import {storySchema} from './story.schema';
-import {validateStoryProperties} from './story.utils';
-import {NoValidStoryException} from './story.errors';
-import {Story} from './story.class';
-import {GenerateStoryDto} from './story.controller';
-import {IaGenerationService} from "../shared/ia-generation.service";
+import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config/dist';
+import { HttpService } from '@nestjs/axios';
+import { storySchema } from './story.schema';
+import { validateStoryProperties } from './story.utils';
+import { NoValidStoryException } from './story.errors';
+import { Story } from './story.class';
+import { GenerateStoryDto } from './story.controller';
+import { IaGenerationService } from '../shared/ia-generation.service';
 
 @Injectable()
 export class StoryService {
@@ -33,8 +33,11 @@ export class StoryService {
 
     console.log('Generating Story...');
 
-    const result = await this.iaGenerationService.generateText(prompt, storySchema);
-    const generatedStory: Story = JSON.parse(result.response.text());
+    const result = await this.iaGenerationService.generateTextV2(
+      prompt,
+      storySchema
+    );
+    const generatedStory: Story = JSON.parse(result.text);
     console.log('story generated and parsed, checking integrity ...');
 
     const errors = validateStoryProperties(generatedStory);
