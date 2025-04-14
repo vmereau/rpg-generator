@@ -6,7 +6,7 @@ import { validateCharacterProperties } from '../core/character/character.utils';
 import { CharacterNotValidException } from '../core/character/character.errors';
 import { Adventurer } from './adventurer.class';
 import { GenerateAdventurerDto } from './adventurer.controller';
-import { IaGenerationService } from '../shared/ia-generation.service';
+import { IaGenerationService } from '../core/ia-generation.service';
 
 @Injectable()
 export class AdventurerService {

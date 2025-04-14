@@ -6,7 +6,7 @@ import { shopSchema } from './shop.schema';
 import { validateShopProperties } from './shop.utils';
 import { NoValidShopException } from './shop.errors';
 import { Shop } from './shop.class';
-import { IaGenerationService } from '../shared/ia-generation.service';
+import { IaGenerationService } from '../core/ia-generation.service';
 import { ShopExamples } from './shop.example';
 
 @Injectable()

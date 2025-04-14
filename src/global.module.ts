@@ -1,7 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config/dist';
 import { GoogleGenAI } from '@google/genai';
-import { IaGenerationService } from './shared/ia-generation.service';
+import { IaGenerationService } from './core/ia-generation.service';
 
 @Global()
 @Module({

@@ -6,7 +6,7 @@ import { monstersSchema } from './Monsters.schema';
 import { GenerateMonstersDto } from './monsters.controller';
 import { validateCharacterProperties } from '../core/character/character.utils';
 import { Monster } from './monster.class';
-import { IaGenerationService } from '../shared/ia-generation.service';
+import { IaGenerationService } from '../core/ia-generation.service';
 
 export enum MonsterLevelDescription {
   level_1 = 'a weak monster',

@@ -6,7 +6,7 @@ import { validateStoryProperties } from './story.utils';
 import { NoValidStoryException } from './story.errors';
 import { Story } from './story.class';
 import { GenerateStoryDto } from './story.controller';
-import { IaGenerationService } from '../shared/ia-generation.service';
+import { IaGenerationService } from '../core/ia-generation.service';
 
 @Injectable()
 export class StoryService {

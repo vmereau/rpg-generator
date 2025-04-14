@@ -6,7 +6,7 @@ import { choiceSchema } from './choice.schema';
 import { GenerateChoicesDto } from './choice.controller';
 import { validateChoicesProperties } from './choice.utils';
 import { NoValidChoice } from './choice.error';
-import { IaGenerationService } from '../shared/ia-generation.service';
+import { IaGenerationService } from '../core/ia-generation.service';
 
 @Injectable()
 export class ChoiceService {

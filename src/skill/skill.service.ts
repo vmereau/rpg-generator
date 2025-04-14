@@ -6,7 +6,7 @@ import { GenerateSkillDto } from './skill.controller';
 import { Skill } from './skill.class';
 import { validateSkillProperties } from './skill.utils';
 import { NoValidSkillException } from './skill.errors';
-import { IaGenerationService } from '../shared/ia-generation.service';
+import { IaGenerationService } from '../core/ia-generation.service';
 
 @Injectable()
 export class SkillService {
